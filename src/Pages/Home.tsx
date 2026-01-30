@@ -5,7 +5,7 @@ import { Button } from "@headlessui/react"
 function Home(): JSX.Element {
     return (
         <>
-            <div className=" shadow-2xl m-10 outline-2 outline-gray-100 bg-amber-50 rounded-2xl p-5 shadow-gray-400/70">
+            <div className=" shadow-2xl text-shadow-lg/15 m-10 outline-2 outline-gray-100 bg-amber-50 rounded-2xl p-5 shadow-gray-400/70">
 
                 <h1 className="text-3xl text-center font-bold">MyBlog</h1>
                 <div className="my-3 mx-5 h-px bg-purple-950/70" />
