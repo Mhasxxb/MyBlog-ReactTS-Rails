@@ -6,7 +6,7 @@ function UserCard(): JSX.Element {
             <div className="max-w-3xl mx-auto mt-10 space-x-55 rounded-xl outline-2 outline-gray-100 bg-amber-50 shadow-2xl shadow-gray-400/70 p-6">
                 <div className="flex items-center">
                     <div className="flex flex-1 flex-col space-y-3 items-center">
-                        <img className="w-32 rounded-full cursor-pointer shadow-2xl shadow-gray-500 border-2 border-gray-400 hover:shadow-gray-700" src="src/assets/profile_pic.webp" alt="" />
+                        <img className="w-32 rounded-full cursor-pointer shadow-2xl shadow-gray-500 border-2 border-gray-400 hover:shadow-gray-700" src="/profile_pic.webp" alt="" />
                         <h2 className="text-purple-800 font-semibold cursor-pointer text-shadow-lg/20">@M.hasxxb</h2>
                     </div>
                     {/* <div className="h-px w-10 space-x-6 bg-purple-500"></div> */}

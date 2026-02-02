@@ -6,14 +6,18 @@ import {
   Square2StackIcon,
   TrashIcon,
 } from '@heroicons/react/16/solid'
+Link
 import type { JSX } from 'react'
+import { Link } from 'react-router-dom'
 type ComponentType = {
   title: string,
   firstVal: string,
+  firstRoute: string,
   secondVal: string,
+  secondRoute: string
 }
 
-function DropDown({ title, firstVal, secondVal }: ComponentType): JSX.Element {
+function DropDown({ title, firstVal, firstRoute, secondVal, secondRoute }: ComponentType): JSX.Element {
   return (
     <div >
       <Menu>
@@ -27,23 +31,28 @@ function DropDown({ title, firstVal, secondVal }: ComponentType): JSX.Element {
           anchor="bottom end"
           className="w-45 z-60 origin-top-right border border-purple/5 bg-purple/5 p-1 text-sm/6 text-purple bg-purple-900 transition duration-100 ease-out [--anchor-gap:--spacing(1)] focus:outline-none data-closed:scale-95 data-closed:opacity-0">
           <MenuItem>
-            <button className="group flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 data-focus:bg-purple/10">
-              <PencilIcon className="size-4 fill-white" />
-              <p className='text-white'>{firstVal}</p>
-            </button>
+            <Link to={firstRoute}>
+              <button className="group flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 data-focus:bg-purple/10">
+                <PencilIcon className="size-4 fill-white" />
+                <p className='text-white'>{firstVal}</p>
+              </button>
+            </Link>
+
           </MenuItem>
           <MenuItem>
-            <button className="group flex w-full items-center cursor-pointer gap-2 rounded-lg px-3 py-1.5 data-focus:bg-purple/10">
-              <Square2StackIcon className="size-4 fill-white" />
-              <p className='text-white'>{secondVal}</p>
-            </button>
+            <Link to={secondRoute}>
+              <button className="group flex w-full items-center cursor-pointer gap-2 rounded-lg px-3 py-1.5 data-focus:bg-purple/10">
+                <Square2StackIcon className="size-4 fill-white" />
+                <p className='text-white'>{secondVal}</p>
+              </button>
+            </Link>
           </MenuItem>
           <div className="my-1 h-px bg-black/70" />
           <MenuItem>
             <div className='text-white hover:text-amber-200 hover:fill-amber-200'>
               <button className="group flex w-full items-center cursor-pointer gap-2 rounded-lg px-3 py-1.5 data-focus:bg-purple/10">
-                <TrashIcon className="size-4 fill-white" />
-                <p className=''>Close</p>
+                {/* <TrashIcon className="size-4 fill-white" /> */}
+                <p className=''><span className='font-bold'>&nbsp;X </span>&ensp;Close</p>
               </button>
             </div>
           </MenuItem>

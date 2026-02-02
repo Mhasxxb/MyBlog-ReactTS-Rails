@@ -1,6 +1,7 @@
 import { useState, type JSX } from "react"
 import Form from "../FormHelper"
 import { Button } from "@headlessui/react"
+import { Link } from "react-router-dom"
 
 function Login(): JSX.Element {
     let [selection, setSelection] = useState<"username" | "email">("username")
@@ -92,9 +93,9 @@ function Login(): JSX.Element {
             <div className="text-center my-3">
 
                 <Button className="inline-flex items-center gap-2 rounded-md cursor-pointer bg-purple-950 px-3 py-1.5 font-semibold text-white focus:not-data-focus:outline-none data-focus:outline data-focus:outline-white shadow-[0_12px_30px_rgba(156,163,175,0.60)] transition-all hover:outline-purple-900 hover:shadow-[0_12px_30px_rgba(156,163,175,0.95)] data-hover:bg-purple-900 data-open:bg-purple-900">
-                    Sign up
+                    Login
                 </Button>
-                <p className="py-3 text-purple-800 text-shadow-lg/10 font-semibold">Don't have an account <a className="font-extrabold text-purple-800/60 text-shadow-lg/10 hover:text-shadow-lg/15 transition-all" href="">sign up</a> instead.</p>
+                <p className="py-3 text-purple-800 text-shadow-lg/10 font-semibold">Don't have an account <Link to="/signup" className="font-extrabold text-purple-800/60 text-shadow-lg/10 hover:text-shadow-lg/15 transition-all">sign up</Link> instead.</p>
 
             </div>
         </>

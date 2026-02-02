@@ -1,5 +1,4 @@
-import type { JSX } from "react"
-
+import type { JSX } from "react";
 function UserProfile(): JSX.Element {
     function toggleContributions(): void {
 
@@ -12,7 +11,7 @@ function UserProfile(): JSX.Element {
 
                     {/* Profile Image */}
                     <img
-                        src="src/assets/profile_pic.webp"
+                        src="/profile_pic.webp"
                         alt="profile pic"
                         className="w-28 h-28 rounded-full border border-white cursor-pointer shadow-2xl shadow-gray-700/60 hover:shadow-gray-700/90 transition-all"
                     />
