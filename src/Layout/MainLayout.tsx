@@ -15,6 +15,7 @@ import EditUser from "../Users/EditUser";
 import EditCategory from "../Categories/EditCategory";
 import NewArticle from "../Articles/NewArticle";
 import NewCategory from "../Categories/NewCategory";
+import { Outlet } from "react-router-dom";
 
 function MainLayout(): JSX.Element {
 
@@ -25,25 +26,27 @@ function MainLayout(): JSX.Element {
                     <Navbar></Navbar>
                 </div>
 
-                <div className="grow my-10 mx-15">
+                <main className="grow my-10 mx-15">
 
+                    {/* Outlet is used for rendering pages according to the routes exactly like yield in rails */}
+                    <Outlet />
                     {/* main content goes in here */}
-                    {/* <Home /> */}
-                    {/* <About /> */}
-                    {/* <UserProfile /> */}
-                    {/* <ShowArticle /> */}
-                    {/* <ArticleIndex /> */}
-                    {/* <UserIndex /> */}
-                    {/* <CategoryIndex /> */}
+                    {/* <Home />
+                    <About />
+                    <UserProfile />
+                    <ShowArticle />
+                    <ArticleIndex />
+                    <UserIndex />
+                    <CategoryIndex />
                     <SignUpForm />
                     <LoginForm />
                     <EditArticle />
                     <EditUser />
                     <EditCategory />
                     <NewArticle />
-                    <NewCategory />
+                    <NewCategory /> */}
 
-                </div>
+                </main>
 
                 <div className=" m-0">
                     <Footer></Footer>

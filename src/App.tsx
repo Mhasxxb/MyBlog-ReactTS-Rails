@@ -1,11 +1,20 @@
 import './App.css'
 import type { JSX } from 'react'
 import MainLayout from './Layout/MainLayout'
-function App():JSX.Element {
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import AppRoutes from './Session/AppRoutes'
+
+function App(): JSX.Element {
 
   return (
     <>
-        <MainLayout></MainLayout>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<MainLayout />}>
+            <Route path="/*" element={<AppRoutes />} />
+          </Route>
+        </Routes>
+      </BrowserRouter >
     </>
   )
 }
