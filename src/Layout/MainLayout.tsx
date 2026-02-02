@@ -10,6 +10,8 @@ import UserIndex from "../Users/UsersIndex";
 import CategoryIndex from "../Categories/CategoriesIndex";
 import SignUpForm from "../Users/NewUser";
 import LoginForm from "../Session/Login";
+import EditArticle from "../Articles/EditArticle";
+
 function MainLayout(): JSX.Element {
 
     return (
@@ -22,15 +24,17 @@ function MainLayout(): JSX.Element {
                 <div className="grow my-10 mx-15">
 
                     {/* main content goes in here */}
-                    <Home />
-                    <About />
-                    <UserProfile />
-                    <ShowArticle />
-                    <ArticleIndex />
-                    <UserIndex />
-                    <CategoryIndex />
-                    <SignUpForm />
+                    {/* <Home /> */}
+                    {/* <About /> */}
+                    {/* <UserProfile /> */}
+                    {/* <ShowArticle /> */}
+                    {/* <ArticleIndex /> */}
+                    {/* <UserIndex /> */}
+                    {/* <CategoryIndex /> */}
+                    {/* <SignUpForm /> */}
                     <LoginForm />
+                    <EditArticle />
+
 
                 </div>
 
