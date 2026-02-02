@@ -13,7 +13,8 @@ import LoginForm from "../Session/Login";
 import EditArticle from "../Articles/EditArticle";
 import EditUser from "../Users/EditUser";
 import EditCategory from "../Categories/EditCategory";
-
+import NewArticle from "../Articles/NewArticle";
+import NewCategory from "../Categories/NewCategory";
 
 function MainLayout(): JSX.Element {
 
@@ -39,7 +40,8 @@ function MainLayout(): JSX.Element {
                     <EditArticle />
                     <EditUser />
                     <EditCategory />
-
+                    <NewArticle />
+                    <NewCategory />
 
                 </div>
 
