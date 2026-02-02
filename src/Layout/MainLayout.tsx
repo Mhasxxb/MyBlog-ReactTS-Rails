@@ -11,6 +11,9 @@ import CategoryIndex from "../Categories/CategoriesIndex";
 import SignUpForm from "../Users/NewUser";
 import LoginForm from "../Session/Login";
 import EditArticle from "../Articles/EditArticle";
+import EditUser from "../Users/NewUser";
+import EditCategory from "../Categories/EditCategory";
+
 
 function MainLayout(): JSX.Element {
 
@@ -34,6 +37,8 @@ function MainLayout(): JSX.Element {
                     {/* <SignUpForm /> */}
                     <LoginForm />
                     <EditArticle />
+                    <EditUser />
+                    <EditCategory />
 
 
                 </div>
