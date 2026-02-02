@@ -36,7 +36,7 @@ function MainLayout(): JSX.Element {
                     {/* <UserIndex /> */}
                     {/* <CategoryIndex /> */}
                     <SignUpForm />
-                    {/* <LoginForm /> */}
+                    <LoginForm />
                     <EditArticle />
                     <EditUser />
                     <EditCategory />
@@ -48,8 +48,6 @@ function MainLayout(): JSX.Element {
                 <div className=" m-0">
                     <Footer></Footer>
                 </div>
-
-
             </div>
         </>
     )

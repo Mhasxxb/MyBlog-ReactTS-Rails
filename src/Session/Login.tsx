@@ -94,7 +94,7 @@ function Login(): JSX.Element {
                 <Button className="inline-flex items-center gap-2 rounded-md cursor-pointer bg-purple-950 px-3 py-1.5 font-semibold text-white focus:not-data-focus:outline-none data-focus:outline data-focus:outline-white shadow-[0_12px_30px_rgba(156,163,175,0.60)] transition-all hover:outline-purple-900 hover:shadow-[0_12px_30px_rgba(156,163,175,0.95)] data-hover:bg-purple-900 data-open:bg-purple-900">
                     Sign up
                 </Button>
-                <p className="py-3 text-purple-800 text-shadow-lg/10 font-semibold">Already have an account <a className="font-extrabold text-purple-800/60 text-shadow-lg/10 hover:text-shadow-lg/15 transition-all" href="">login</a> instead.</p>
+                <p className="py-3 text-purple-800 text-shadow-lg/10 font-semibold">Don't have an account <a className="font-extrabold text-purple-800/60 text-shadow-lg/10 hover:text-shadow-lg/15 transition-all" href="">sign up</a> instead.</p>
 
             </div>
         </>
