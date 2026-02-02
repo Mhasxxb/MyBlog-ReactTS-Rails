@@ -3,7 +3,8 @@ import type { JSX } from "react"
 function About(): JSX.Element {
     return (
         <>
-            <div className=" shadow-2xl m-10 outline-2 outline-gray-100 bg-amber-50 rounded-2xl p-5 shadow-gray-400/70">
+
+            <div className="max-w-3xl mx-auto shadow-2xl m-10 outline-2 outline-gray-100 bg-amber-50 rounded-2xl p-5 shadow-gray-400/70">
 
                 <h1 className="text-3xl text-center text-shadow-lg/15 font-bold">About MyBlog</h1>
                 <div className="my-3 mx-5 h-px bg-black/70" />
@@ -37,6 +38,7 @@ function About(): JSX.Element {
                     <p>That's what we stand for.</p>
                 </div>
             </div>
+
         </>
     )
 }

@@ -4,9 +4,9 @@ function CategoryCard({ name }: { name: string }): JSX.Element {
     return (
         <>
             <div className="max-w-3xl mx-auto mt-10 space-x-55 rounded-xl outline-2 outline-gray-100 bg-amber-50 shadow-2xl shadow-gray-400/70 p-6">
-                <div className="flex justify-between text-xl mx-10">
-                    <h2 className="text-purple-800 font-bold cursor-pointer text-shadow-lg/20">{name}</h2>
-                    <h2 className="text-purple-800 font-bold text-shadow-lg/20">{10} Articles</h2>
+                <div className="flex justify-between mx-10">
+                    <h2 className="text-purple-800 text-xl font-bold cursor-pointer text-shadow-lg/20">{name}</h2>
+                    <h2 className="text-gray-600 font-semibold text-shadow-lg/20">{10} Articles</h2>
                 </div>
                 <div className="h-px w-full my-3 space-x-6 bg-purple-500"></div>
                 <div className="flex justify-between mx-2">
