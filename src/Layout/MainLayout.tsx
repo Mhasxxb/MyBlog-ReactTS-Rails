@@ -34,7 +34,7 @@ function MainLayout(): JSX.Element {
                     {/* <ArticleIndex /> */}
                     {/* <UserIndex /> */}
                     {/* <CategoryIndex /> */}
-                    {/* <SignUpForm /> */}
+                    <SignUpForm />
                     <LoginForm />
                     <EditArticle />
                     <EditUser />
