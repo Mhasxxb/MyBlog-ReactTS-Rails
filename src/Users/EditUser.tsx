@@ -2,7 +2,7 @@ import type { JSX } from "react"
 import Form from "../FormHelper"
 import { Button } from "@headlessui/react"
 
-function SignUp(): JSX.Element {
+function EditingLayout(): JSX.Element {
     return (
         <>
             <div>
@@ -33,7 +33,7 @@ function EditUser(): JSX.Element {
     return (
         <>
             <Form title="Edit profile">
-                <SignUp />
+                <EditingLayout />
             </Form>
         </>
     )
