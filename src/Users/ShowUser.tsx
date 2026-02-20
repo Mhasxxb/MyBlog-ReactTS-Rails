@@ -1,4 +1,6 @@
 import type { JSX } from "react";
+import { Link } from "react-router-dom";
+
 function UserProfile(): JSX.Element {
     function toggleContributions(): void {
 
@@ -38,8 +40,9 @@ function UserProfile(): JSX.Element {
 
                         {/* Bottom Rows */}
                         <div className="grid grid-cols-2 gap-y-2 font-medium text-gray-800">
-                            <button className="cursor-pointer px-2 p-1 mx-3 border border-blue-500 text-blue-500 rounded hover:bg-blue-500 hover:text-amber-50 hover:shadow-2xl hover:shadow-blue-900 transition_all">Edit profile</button>
-                            <button className="cursor-pointer px-2 p-1 mx-3 border border-red-500 text-red-500 rounded hover:bg-red-500 hover:text-amber-50 hover:shadow-2xl hover:shadow-red-900 transition_all">Delete profile</button>
+                            <Link to="edit" className="cursor-pointer px-2 p-1 mx-3 border border-blue-500 text-blue-500 rounded hover:bg-blue-500 hover:text-amber-50 hover:shadow-2xl hover:shadow-blue-900 transition_all flex justify-center"><button >Edit profile</button></Link>
+
+                            <Link to={"/"} className="cursor-pointer px-2 p-1 mx-3 border border-red-500 text-red-500 rounded hover:bg-red-500 hover:text-amber-50 hover:shadow-2xl hover:shadow-red-900 transition_all flex justify-center"><button>Delete profile</button></Link>
                         </div>
                     </div>
                 </div>

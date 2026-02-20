@@ -1,4 +1,5 @@
 import { JSX } from "react";
+import { Link } from "react-router-dom";
 
 function ArticleCard({ truncate }: { truncate: string }): JSX.Element {
     return (
@@ -24,11 +25,18 @@ function ArticleCard({ truncate }: { truncate: string }): JSX.Element {
 
                     <div className="flex justify-between mx-2">
                         <div>
-                            <button className="cursor-pointer px-2 p-1 mx-3 border border-green-500 text-green-500 rounded hover:bg-green-500 hover:text-amber-50 hover:shadow-2xl hover:shadow-green-900 transition_all">Show</button>
-                            <button className="cursor-pointer px-2 p-1 mx-3 border border-blue-500 text-blue-500 rounded hover:bg-blue-500 hover:text-amber-50 hover:shadow-2xl hover:shadow-blue-900 transition_all">Edit</button>
+                            <Link to=":id">
+                                <button className="cursor-pointer px-2 p-1 mx-3 border border-green-500 text-green-500 rounded hover:bg-green-500 hover:text-amber-50 hover:shadow-2xl hover:shadow-green-900 transition_all">Show</button>
+                            </Link>
+                            <Link to=":id/edit">
+                                <button className="cursor-pointer px-2 p-1 mx-3 border border-blue-500 text-blue-500 rounded hover:bg-blue-500 hover:text-amber-50 hover:shadow-2xl hover:shadow-blue-900 transition_all">Edit</button>
+                            </Link>
                         </div>
                         <div>
-                            <button className="cursor-pointer px-2 p-1 mx-3 border border-red-500 text-red-500 rounded hover:bg-red-500 hover:text-amber-50 hover:shadow-2xl hover:shadow-red-900 transition_all">Delete</button>
+                            <Link to={"/"}>
+                                <button className="cursor-pointer px-2 p-1 mx-3 border border-red-500 text-red-500 rounded hover:bg-red-500 hover:text-amber-50 hover:shadow-2xl hover:shadow-red-900 transition_all">Delete</button>
+                            </Link>
+                                
                         </div>
                     </div>
 

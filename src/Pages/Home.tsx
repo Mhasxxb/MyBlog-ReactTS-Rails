@@ -1,6 +1,8 @@
 import type { JSX } from "react"
 import Card from "./Card"
 import { Button } from "@headlessui/react"
+import { Link } from "react-router-dom"
+
 
 function Home(): JSX.Element {
     return (
@@ -41,11 +43,11 @@ function Home(): JSX.Element {
                     <div className="my-5 h-px bg-purple-950/25" />
                     <h2 className="text-xl font-bold">Ready to start learning.</h2>
                     <div className="text-center my-3">
-
-                        <Button className="inline-flex items-center gap-2 rounded-md cursor-pointer bg-purple-950 px-3 py-1.5 font-semibold text-white focus:not-data-focus:outline-none data-focus:outline data-focus:outline-white shadow-[0_12px_30px_rgba(156,163,175,0.60)] transition-all hover:outline-purple-900 hover:shadow-[0_12px_30px_rgba(156,163,175,0.95)] data-hover:bg-purple-900 data-open:bg-purple-900">
-                            Sign up
-                        </Button>
-
+                        <Link to="signup">
+                            <Button className="inline-flex items-center gap-2 rounded-md cursor-pointer bg-purple-950 px-3 py-1.5 font-semibold text-white focus:not-data-focus:outline-none data-focus:outline data-focus:outline-white shadow-[0_12px_30px_rgba(156,163,175,0.60)] transition-all hover:outline-purple-900 hover:shadow-[0_12px_30px_rgba(156,163,175,0.95)] data-hover:bg-purple-900 data-open:bg-purple-900">
+                                Sign up
+                            </Button>
+                        </Link>
                     </div>
                 </div>
             </div>

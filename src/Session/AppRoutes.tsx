@@ -15,7 +15,7 @@ import CategoryIndex from "../Categories/CategoriesIndex"
 import NewCategory from "../Categories/NewCategory"
 import EditCategory from "../Categories/EditCategory"
 
-EditUser
+
 function AppRoutes(): JSX.Element {
     return (
         <Routes>
