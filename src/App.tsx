@@ -2,7 +2,7 @@ import './App.css'
 import type { JSX } from 'react'
 import MainLayout from './Layout/MainLayout'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import AppRoutes from './Session/AppRoutes'
+import AppRoutes from './Layout/AppRoutes'
 
 function App(): JSX.Element {
 

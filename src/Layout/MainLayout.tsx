@@ -8,7 +8,7 @@ import ShowArticle from "../Articles/ShowArticle";
 import UserProfile from "../Users/ShowUser";
 import UserIndex from "../Users/UsersIndex";
 import CategoryIndex from "../Categories/CategoriesIndex";
-import SignUpForm from "../Users/NewUser";
+import SignUpForm from "../Session/NewUser";
 import LoginForm from "../Session/Login";
 import EditArticle from "../Articles/EditArticle";
 import EditUser from "../Users/EditUser";
