@@ -8,7 +8,11 @@ export const updateUserApi = async (
   userBody: UpdateUser
 ): Promise<ApiResponse> => {
 
-  const token = localStorage.getItem("authToken")
+  const token = localStorage.getItem("authToken");
+  if (!token) {
+    // Handle missing token, e.g., by returning an error or redirecting.
+    return Promise.reject(new Error('Auth token not found'));
+  }
 
   try {
     const response = await api.patch(

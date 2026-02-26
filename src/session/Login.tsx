@@ -73,7 +73,6 @@ function Login(): JSX.Element {
                                 className="border-2 px-2 text-shadow-lg/5 text-purple-600/90 border-gray-400/50 rounded focus:outline-0 w-full focus:border-purple-400" id="Email"
                                 value={email}
                                 onChange={(e: ChangeEvent<HTMLInputElement, HTMLInputElement>) => {
-                                    console.log(e.target.value)
                                     setEmail(e.target.value)
                                 }}
                             />
@@ -89,8 +88,7 @@ function Login(): JSX.Element {
                                 placeholder="Enter Password"
                                 className="border-2 pl-2 pr-10 text-shadow-lg/5 text-purple-600/90 border-gray-400/50 rounded focus:outline-0 w-full focus:border-purple-400"
                                 id="Password"
-                                onChange={(e: ChangeEvent<HTMLInputElement, HTMLInputElement>) => {
-                                    console.log(e.target.value)
+                                onChange={(e: ChangeEvent<HTMLInputElement, HTMLInputElement>) => {  
                                     setPassword(e.target.value)
                                 }}
                             />

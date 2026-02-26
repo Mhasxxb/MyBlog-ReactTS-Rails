@@ -56,7 +56,7 @@ function UserCard({ user }: UserCardProps): JSX.Element {
                         <div
                             className="w-28 h-28 flex justify-around items-center rounded-full border-2 text-center border-gray-500 bg-gray-300 cursor-pointer shadow-2xl font-bold text-purple-950 text-6xl shadow-gray-700/60 hover:shadow-gray-700/90 transition-all"
                         >
-                            {`${user.first_name[0].toUpperCase()}${user.last_name[0].toUpperCase()}`}
+                            {`${user.first_name[0].toUpperCase()}${user.last_name[0] ? user.last_name[0].toUpperCase():""}`}
                             { }
                         </div>
                         <h2 className="text-purple-800 font-semibold cursor-pointer text-shadow-lg/20">{name}</h2>

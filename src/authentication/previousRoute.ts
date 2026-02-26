@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { isAuthenticated } from "../context/AuthenticateContext";
 
 export const usePreviousRoute = () => {
   const location = useLocation();

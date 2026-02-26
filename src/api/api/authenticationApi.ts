@@ -28,7 +28,6 @@ export const authenticationApi = async (userBody: User, method: "login" | "signu
         return result
     }
     catch (error: any) {
-        console.log(error.response.status)
         const result: AuthApiResponse = {
             status: error.response.status,
             payload: error.response.data
@@ -41,7 +40,11 @@ export const authenticationApi = async (userBody: User, method: "login" | "signu
 // auth/signup
 
 export const destroyUser = async () => {
-    const token: string = localStorage.getItem("authToken") as string
+    const token: string | null = localStorage.getItem("authToken");
+    if (!token) {
+      // Or return an error response
+      return { success: false, status: { message: "No auth token found." } };
+    }
     try {
         const response: AxiosResponse<Payload> = await api.delete(`${API_URL}auth/signup`,
             {
@@ -60,7 +63,6 @@ export const destroyUser = async () => {
         return result
     }
     catch (error: any) {
-        console.log(error);
         const result: Delete = {
             success: false
         }

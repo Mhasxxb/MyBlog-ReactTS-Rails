@@ -50,7 +50,6 @@ function SignUp(): JSX.Element {
             const error: MismatchError = {
                 error: "Passwords do not match."
             }
-            console.log(user)
             console.log(error);
 
         }
@@ -79,10 +78,11 @@ function SignUp(): JSX.Element {
                     <div className="flex justify-between mx-20">
                         <label htmlFor="Fnmae"
                             className="text-purple-800 text-shadow-lg/10 font-semibold">
+                            First:
                         </label>
                         <input type="text"
                             placeholder="First Name"
-                            className="border-2 px-2 text-shadow-lg/5 mr-2 text-purple-600/90 border-gray-400/50 rounded focus:outline-0 w-80 focus:border-purple-400"
+                            className="border-2 px-2 ml-1 text-shadow-lg/5 mr-1 text-purple-600/90 border-gray-400/50 rounded focus:outline-0 w-50 focus:border-purple-400"
                             id="Fname"
                             onChange={(e: ChangeEvent<HTMLInputElement, HTMLInputElement>) => {
                                 setFName(e.target.value)
@@ -90,10 +90,11 @@ function SignUp(): JSX.Element {
                         />
                         <label htmlFor="Lname"
                             className="text-purple-800 text-shadow-lg/10 font-semibold">
+                            Last:
                         </label>
                         <input type="text"
                             placeholder="Last Name"
-                            className="border-2 px-2 text-shadow-lg/5 ml-2 text-purple-600/90 border-gray-400/50 rounded focus:outline-0 w-80 focus:border-purple-400"
+                            className="border-2 px-2 text-shadow-lg/5 ml-1 text-purple-600/90 border-gray-400/50 rounded focus:outline-0 w-50 focus:border-purple-400"
                             id="Lname"
                             onChange={(e: ChangeEvent<HTMLInputElement, HTMLInputElement>) => {
                                 setLName(e.target.value)

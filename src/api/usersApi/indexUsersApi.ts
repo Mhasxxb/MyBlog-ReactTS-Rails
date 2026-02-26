@@ -2,10 +2,10 @@ import { api } from "../api"
 import { API_URL } from "../../config"
 import { UserIndexResponse } from "../../App.types"
 
-export const userIndexApi = async (path: string, offset: number = 0): Promise<UserIndexResponse> => {
+export const userIndexApi = async (path: string, offset: number = 0,limit: number = 3): Promise<UserIndexResponse> => {
     const token = localStorage.getItem("authToken")
     try {
-        const response = await api.get(`${API_URL}${path}?limit=3&offset=${offset}`, {
+        const response = await api.get(`${API_URL}${path}?limit=${limit}&offset=${offset}`, {
             headers: {
                 Accept: "application/json",
                 Authorization: `Bearer ${token}`
