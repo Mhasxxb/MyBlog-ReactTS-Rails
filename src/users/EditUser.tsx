@@ -1,4 +1,4 @@
-import { ChangeEvent, useState, type JSX } from "react"
+import { ChangeEvent, useEffect, useState, type JSX } from "react"
 import Form from "../helpers/FormHelper"
 import { updateUserApi } from "../api/usersApi/editUserApi"
 import { useNavigate, useParams } from "react-router-dom"
@@ -9,14 +9,20 @@ function EditingLayout(): JSX.Element {
     let [lName, setLName] = useState<string>(localStorage.getItem("last_name") as string)
     // let [email, setEmail] = useState<string>(localStorage.getItem("email") as string)
     const { id } = useParams<{ id: string }>()
-    
+
     const navigate = useNavigate()
-    if(localStorage.getItem("id")){
-        navigate(`users`)
-    }
-    else if(id != localStorage.getItem("id")){
-        navigate(`users/${localStorage.getItem("id")}`)
-    }
+
+    useEffect(() => {
+        console.log(id, localStorage.getItem("id"));
+        if (localStorage.getItem("id") === null) {
+            console.log(1);
+            navigate(`/users/${localStorage.getItem("id")}`)
+        }
+        else if (id !== localStorage.getItem("id")) {
+            console.log(2);
+            navigate(`/users/${localStorage.getItem("id")}`)
+        }
+    }, [])
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         console.log(user);
 
