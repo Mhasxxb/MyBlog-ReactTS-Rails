@@ -1,20 +1,20 @@
 import { JSX } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import Home from "../Pages/Home";
-import About from "../Pages/About";
-import ArticleIndex from "../Articles/ArticlesIndex";
-import ShowArticle from "../Articles/ShowArticle";
-import UserProfile from "../Users/ShowUser";
-import UserIndex from "../Users/UsersIndex";
-import CategoryIndex from "../Categories/CategoriesIndex";
-import SignUpForm from "../Users/NewUser";
-import LoginForm from "../Session/Login";
-import EditArticle from "../Articles/EditArticle";
-import EditUser from "../Users/EditUser";
-import EditCategory from "../Categories/EditCategory";
-import NewArticle from "../Articles/NewArticle";
-import NewCategory from "../Categories/NewCategory";
+import Home from "../pages/Home";
+import About from "../pages/About";
+import ArticleIndex from "../articles/ArticlesIndex";
+import ShowArticle from "../articles/ShowArticle";
+import UserProfile from "../users/ShowUser";
+import UserIndex from "../users/UsersIndex";
+import CategoryIndex from "../categories/CategoriesIndex";
+import SignUpForm from "../session/NewUser";
+import LoginForm from "../session/Login";
+import EditArticle from "../articles/EditArticle";
+import EditUser from "../users/EditUser";
+import EditCategory from "../categories/EditCategory";
+import NewArticle from "../articles/NewArticle";
+import NewCategory from "../categories/NewCategory";
 import { Outlet } from "react-router-dom";
 
 function MainLayout(): JSX.Element {

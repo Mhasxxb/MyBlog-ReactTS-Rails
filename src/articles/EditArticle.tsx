@@ -1,5 +1,5 @@
 import type { JSX } from "react"
-import Form from "../FormHelper"
+import Form from "../helpers/FormHelper"
 import { Button } from "@headlessui/react"
 
 function EditingLayout(): JSX.Element {
