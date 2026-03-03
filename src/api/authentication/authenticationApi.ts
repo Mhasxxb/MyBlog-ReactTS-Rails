@@ -19,7 +19,7 @@ export const authenticationApi = async (userBody: User, method: "login" | "signu
             const token: string = authHeader.split(" ")[1]
             const userId: string = (response.data.data.id).toString()
             localStorage.setItem("authToken", token)
-            sessionStorage.setItem("id", userId)
+            localStorage.setItem("id", userId)
         }
         const result: AuthApiResponse = {
             status: response.status,
@@ -43,8 +43,8 @@ export const authenticationApi = async (userBody: User, method: "login" | "signu
 export const destroyUser = async () => {
     const token: string | null = localStorage.getItem("authToken");
     if (!token) {
-      // Or return an error response
-      return { success: false, status: { message: "No auth token found." } };
+        // Or return an error response
+        return { success: false, status: { message: "No auth token found." } };
     }
     try {
         const response: AxiosResponse<Payload> = await api.delete(`${API_URL}auth/signup`,
@@ -61,7 +61,6 @@ export const destroyUser = async () => {
             },
             success: true
         }
-        toast.success(result.status?.message)
         return result
     }
     catch (error: any) {

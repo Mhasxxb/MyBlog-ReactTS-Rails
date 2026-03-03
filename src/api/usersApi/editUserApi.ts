@@ -31,7 +31,6 @@ export const updateUserApi = async (
       status: response.status,
       success: true
     }
-    console.log(result);
     return result
   }
   catch (error: any) {

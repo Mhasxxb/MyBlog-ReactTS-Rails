@@ -21,7 +21,7 @@ function Navbar(): JSX.Element {
         }
 
     }
-    const id: string | null = sessionStorage.getItem("id")
+    const id: string | null = localStorage.getItem("id")
     return (
         <>
             <nav>

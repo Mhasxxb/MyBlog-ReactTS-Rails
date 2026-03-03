@@ -1,5 +1,3 @@
-import ShowArticle from "./articles/ShowArticle"
-
 export type User = {
   first_name?: string,
   last_name?: string | null,
@@ -83,10 +81,11 @@ export type Article = {
   description: string,
   writer: string,
   user_id: number
+  created_at: string
 }
 export type ArticleIndexType = {
   response: {
-    articles?: Article,
+    articles?: Article[],
     meta?: Meta,
     error?: string
   }

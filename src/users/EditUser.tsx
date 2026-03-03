@@ -5,8 +5,8 @@ import { useNavigate, useParams } from "react-router-dom"
 
 function EditingLayout(): JSX.Element {
     // HANDLE THIS USING CONTEXT API
-    let [fName, setFName] = useState<string>(localStorage.getItem("first_name") as string)
-    let [lName, setLName] = useState<string>(localStorage.getItem("last_name") as string)
+    let [fName, setFName] = useState<string>(localStorage.getItem("first_name") || "")
+    let [lName, setLName] = useState<string>(localStorage.getItem("last_name") || "")
     // let [email, setEmail] = useState<string>(localStorage.getItem("email") as string)
     const { id } = useParams<{ id: string }>()
 
@@ -24,8 +24,6 @@ function EditingLayout(): JSX.Element {
         }
     }, [])
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        console.log(user);
-
         e.preventDefault()
         if (confirm("Are you sure you want to make these changes?")) {
             try {
@@ -38,8 +36,8 @@ function EditingLayout(): JSX.Element {
                     navigate(`/users/${id}`)
                 }
             }
-            catch (e: any) {
-                console.log(e);
+            catch (error: any) {
+                console.log(error);
             }
         }
     }

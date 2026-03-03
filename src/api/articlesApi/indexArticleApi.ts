@@ -23,9 +23,6 @@ export const articleIndexApi = async (path: string, offset: number = 0, limit: n
             response: error.response.data,
             success: false
         }
-        return {
-            error: error.response.data,
-            success: false
-        }
+        return result
     }
 }

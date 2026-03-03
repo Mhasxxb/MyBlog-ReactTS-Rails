@@ -3,8 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { timeAgo } from "../config";
 import { destroyArticle } from "../api/articlesApi/destroyArticleApi";
 import { toast } from "react-toastify";
+import { Article } from "../App.types";
 
-function ArticleCard({ truncate, articleBody, type }: { truncate: string, articleBody: any, type: 0 | 1 }): JSX.Element {
+function ArticleCard({ truncate, articleBody, type }: { truncate: string, articleBody: Article, type: 0 | 1 }): JSX.Element {
     const navigate = useNavigate()
     const [block, setBlock] = useState<string>('')
     const handleDelete = async (id: string) => {
@@ -20,7 +21,7 @@ function ArticleCard({ truncate, articleBody, type }: { truncate: string, articl
             }
 
             toast.success("Article deleted successfully.");
-            if (type == 0) {
+            if (type === 0) {
                 setBlock("none")
             }
             else {
@@ -57,7 +58,7 @@ function ArticleCard({ truncate, articleBody, type }: { truncate: string, articl
                         {articleBody.description}
                     </p>
 
-                    {type == 0 && articleBody.user_id == localStorage.getItem('id') ? <div className="flex justify-between mx-2">
+                    {type === 0 && articleBody.user_id.toString() === localStorage.getItem('id') ? <div className="flex justify-between mx-2">
                         <div>
                             <Link to={`/articles/${articleBody.id}`}>
                                 <button className="cursor-pointer px-2 p-1 mx-3 border border-green-500 text-green-500 rounded hover:bg-green-500 hover:text-amber-50 hover:shadow-2xl hover:shadow-green-900 transition-all">Show</button>
@@ -69,19 +70,19 @@ function ArticleCard({ truncate, articleBody, type }: { truncate: string, articl
                         <div>
                             <button className="cursor-pointer px-2 p-1 mx-3 border border-red-500 text-red-500 rounded hover:bg-red-500 hover:text-amber-50 hover:shadow-2xl hover:shadow-red-900 transition-all"
                                 onClick={() => {
-                                    handleDelete(articleBody.id)
+                                    handleDelete(articleBody.id.toString())
                                 }}
                                 id="disable-del-btn"
                             >
                                 Delete
                             </button>
                         </div>
-                    </div> : type == 0 ?
+                    </div> : type === 0 ?
                         <div className="flex justify-end mx-2">
                             <Link to={`/articles/${articleBody.id}`}>
                                 <button className="cursor-pointer px-2 p-1 mx-3 border border-green-500 text-green-500 rounded hover:bg-green-500 hover:text-amber-50 hover:shadow-2xl hover:shadow-green-900 transition-all">Show</button>
                             </Link>
-                        </div> : type == 1 && articleBody.user_id == localStorage.getItem('id') ?
+                        </div> : type === 1 && articleBody.user_id.toString() === localStorage.getItem('id') ?
 
                             <div>
 
@@ -90,7 +91,7 @@ function ArticleCard({ truncate, articleBody, type }: { truncate: string, articl
                                 </Link>
                                 <button className="cursor-pointer px-2 p-1 mx-3 border border-red-500 text-red-500 rounded hover:bg-red-500 hover:text-amber-50 hover:shadow-2xl hover:shadow-red-900 transition-all"
                                     onClick={() => {
-                                        handleDelete(articleBody.id)
+                                        handleDelete(articleBody.id.toString())
                                     }}
                                 >
                                     Delete

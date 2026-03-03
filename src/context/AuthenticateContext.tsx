@@ -27,7 +27,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const logout = () => {
     localStorage.removeItem("authToken");
-    sessionStorage.removeItem("id");
+    localStorage.removeItem("id");
+    localStorage.removeItem("first_name");
+    localStorage.removeItem("last_name");
+    localStorage.removeItem("email");
+    localStorage.removeItem("id");
     sessionStorage.removeItem("lastRoute");
 
     setIsAuthenticated(false);

@@ -9,8 +9,7 @@ type UserCardProps = {
 }
 
 function UserCard({ user }: UserCardProps): JSX.Element {
-    // console.log(user);
-    const name: string = capitalize(user.first_name) + " " + capitalize(user.last_name)
+    const name: string = capitalize(user.first_name) + (user.last_name ? ` ${capitalize(user.last_name)}` : '');
     const contributions = user.article_count
     const [deleteUser, setDeleteUser] = useState<boolean>(false)
     const navigate = useNavigate()

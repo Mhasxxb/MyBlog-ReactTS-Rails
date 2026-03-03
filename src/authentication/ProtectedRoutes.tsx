@@ -9,7 +9,9 @@ function ProtectedRoute(): ReactElement {
         return <Outlet />
     }
     else {
-        toast.warn("You need to sign up before performing this action!")
+        if(localStorage.getItem('id') == null){
+            toast.warn("You need to sign up before performing this action!")
+        }
         return <Navigate to="/" replace />
     }
 };

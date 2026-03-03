@@ -44,7 +44,7 @@ function UserProfile(): JSX.Element {
     useEffect(() => {
         const signOut = async () => {
             const result: Delete = await destroyUser()
-            console.log(result);
+            toast.success(result.status?.message)
             return result
         }
 
@@ -113,7 +113,7 @@ function UserProfile(): JSX.Element {
                         <div className="h-px bg-purple-500" />
 
                         {/* Bottom Rows */}
-                        {user && user.payload.data && (user.payload.data.id).toString() === sessionStorage.getItem("id") ?
+                        {user && user.payload.data && (user.payload.data.id).toString() === localStorage.getItem("id") ?
                             <div className="grid grid-cols-2 gap-y-2 font-medium text-gray-800">
                                 <Link to="edit" className="cursor-pointer px-2 p-1 mx-3 border border-blue-500 text-blue-500 rounded hover:bg-blue-500 hover:text-amber-50 hover:shadow-2xl hover:shadow-blue-900 transition_all flex justify-center">
                                     <button >Edit profile</button>
