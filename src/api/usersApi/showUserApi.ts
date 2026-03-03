@@ -18,7 +18,7 @@ export const userApi = async (path:string, id:string|null): Promise<ApiResponse>
         }
         return result
     }
-    catch(error:any){
+    catch(error: any){
         console.log("Error");
         const result: ApiResponse  = {
             payload: error.response.data,

@@ -1,3 +1,5 @@
+import ShowArticle from "./articles/ShowArticle"
+
 export type User = {
   first_name?: string,
   last_name?: string | null,
@@ -14,6 +16,7 @@ export type Data = {
   last_name: string,
   email: string,
   created_at: string
+  article_count: number
 }
 export type ApiResponse = {
   status: number;
@@ -25,22 +28,34 @@ export type ApiResponse = {
   }
   success: boolean
 }
+export type ApiArticleResponse = {
+  id?: number,
+  message?: string,
+  error?: string[],
+  status: number,
+  success: boolean
+}
 export type AuthApiResponse = {
   status: number;
   payload: {
     status: {
       message: string
+      errors?: string[]
     },
     data?: Data
   },
   token?: string
+}
+export type ApiArticle = {
+  title: string,
+  description: string
 }
 export type Payload = {
   status: { message: string },
   data: Data
 }
 export type MismatchError = {
-  error: string
+  message: string
 }
 
 export interface AuthContextType {
@@ -62,6 +77,21 @@ export type UserIndexResponse = {
   success?: boolean,
   error?: string
 }
+export type Article = {
+  id: number,
+  title: string,
+  description: string,
+  writer: string,
+  user_id: number
+}
+export type ArticleIndexType = {
+  response: {
+    articles?: Article,
+    meta?: Meta,
+    error?: string
+  }
+  success: boolean
+}
 export interface PaginationContextType {
   limit: number;
   offset: number;
@@ -71,11 +101,17 @@ export interface PaginationContextType {
   goNext: () => void;
   goPrev: () => void;
   setTotalCount: (count: number) => void;
+  resetOffset: () => void
 }
 export type Delete = {
   status?: {
     message: string
-  }
+  },
+  success: boolean
+}
+export type ShowArticle = {
+  data?: Article,
+  error?: string,
   success: boolean
 }
 // "status": {

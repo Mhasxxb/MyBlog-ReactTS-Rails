@@ -2,9 +2,10 @@ import { ChangeEvent, useState, type JSX } from "react"
 import Form from "../helpers/FormHelper"
 import { Button } from "@headlessui/react"
 import { Link, useNavigate } from "react-router-dom"
-import { authenticationApi } from "../api/api/authenticationApi";
+import { authenticationApi } from "../api/authentication/authenticationApi";
 import { AuthApiResponse, User } from "../App.types";
 import { useAuth } from "../context/AuthenticateContext";
+import { toast } from "react-toastify";
 
 function Login(): JSX.Element {
     const [passwordType, setPasswordType] = useState<"password" | "text">("password");
@@ -50,11 +51,14 @@ function Login(): JSX.Element {
             const result: AuthApiResponse = await authenticationApi(user, "login");
 
             if (result.status === 200 && result.token) {
+                toast.success(`${result.payload.status.message}`)
                 const user: string = JSON.stringify(result?.payload?.data)
-
-                login(result.token, user);   // 👈 context controls storage
-
+                login(result.token, user);   // context controls storage
                 navigate(`/users/${result?.payload?.data?.id}`);
+            }
+            else {
+                toast.error(`${result.payload.status.message}`)
+                console.log(result)
             }
         } catch (error) {
             console.log(error);
@@ -88,7 +92,7 @@ function Login(): JSX.Element {
                                 placeholder="Enter Password"
                                 className="border-2 pl-2 pr-10 text-shadow-lg/5 text-purple-600/90 border-gray-400/50 rounded focus:outline-0 w-full focus:border-purple-400"
                                 id="Password"
-                                onChange={(e: ChangeEvent<HTMLInputElement, HTMLInputElement>) => {  
+                                onChange={(e: ChangeEvent<HTMLInputElement, HTMLInputElement>) => {
                                     setPassword(e.target.value)
                                 }}
                             />

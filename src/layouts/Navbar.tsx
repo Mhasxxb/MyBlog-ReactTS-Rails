@@ -4,6 +4,7 @@ import DropDown from "./DropDown";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthenticateContext";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Navbar(): JSX.Element {
     // HANDLE USER TOKEN TO UPDATE NAVBAR ASAP USER LOGS IN
@@ -15,6 +16,7 @@ function Navbar(): JSX.Element {
     const handleLogout = (): void => {
         if (confirm("Do you want to logout of MyBlog?")) {
             logout()
+            toast.success("You have been logged out successfully")
             navigate("/")
         }
 

@@ -33,6 +33,10 @@ export const PaginationProvider: React.FC<PaginationProviderProps> = ({
     }
   };
 
+  const resetOffset = ()=>{
+    setOffset(0)
+  }
+
   return (
     <PaginationContext.Provider
       value={{
@@ -44,6 +48,7 @@ export const PaginationProvider: React.FC<PaginationProviderProps> = ({
         goNext,
         goPrev,
         setTotalCount,
+        resetOffset,
       }}
     >
       {children}

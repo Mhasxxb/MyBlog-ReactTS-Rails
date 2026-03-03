@@ -8,11 +8,17 @@ import { usePagination } from "../context/PaginationContext";
 function UserIndex(): JSX.Element {
 
     // const response
-    const { limit, offset, setTotalCount } = usePagination()
+    const { limit, offset, setTotalCount, resetOffset } = usePagination()
+
+    const [check, setCheck] = useState<boolean>(false)
+    useEffect(() => {
+        resetOffset()
+        setCheck(!check)
+    }, [])
 
     const [users, setUsers] = useState<Data[] | null | undefined>([]);
 
-    async function getUsersInfo(offset:number) {
+    async function getUsersInfo(offset: number) {
         const usersInfo: UserIndexResponse | ApiResponse = await userIndexApi(`api/v1/users/`, offset);
 
         console.log(`api/v1/users/?limit=${limit}&offset=${offset}`);
@@ -32,20 +38,20 @@ function UserIndex(): JSX.Element {
         };
 
         fetchUsers();
-    }, [limit, offset]);
+    }, [limit, offset, check]);
 
     return (
         <>
             <PaginationControls />
-                <div className="my-10">
-                    {users && users.length > 0 ? users?.map((user: Data) => {
-                        return (
-                            <div key={user.id}>
-                                <UserCard user={user} />
-                            </div>
-                        )
-                    }) : null}
-                </div>
+            <div className="my-10">
+                {users && users.length > 0 ? users?.map((user: Data) => {
+                    return (
+                        <div key={user.id}>
+                            <UserCard user={user} />
+                        </div>
+                    )
+                }) : null}
+            </div>
             <PaginationControls />
         </>
     )

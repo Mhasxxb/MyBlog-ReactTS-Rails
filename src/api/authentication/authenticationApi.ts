@@ -2,6 +2,7 @@ import { AxiosResponse } from "axios"
 import { API_URL } from "../../config"
 import { User, AuthApiResponse, Payload, Delete } from "../../App.types";
 import { api } from "../api";
+import { toast } from "react-toastify";
 
 export const authenticationApi = async (userBody: User, method: "login" | "signup"): Promise<AuthApiResponse> => {
 
@@ -60,6 +61,7 @@ export const destroyUser = async () => {
             },
             success: true
         }
+        toast.success(result.status?.message)
         return result
     }
     catch (error: any) {

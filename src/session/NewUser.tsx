@@ -3,8 +3,9 @@ import Form from "../helpers/FormHelper"
 import { Button } from "@headlessui/react"
 import { Link, useNavigate } from "react-router-dom";
 import { User, MismatchError, AuthApiResponse } from "../App.types";
-import { authenticationApi } from "../api/api/authenticationApi";
+import { authenticationApi } from "../api/authentication/authenticationApi";
 import { useAuth } from "../context/AuthenticateContext";
+import { toast } from "react-toastify";
 
 function SignUp(): JSX.Element {
     let [passwordType, setPasswordType] = useState<"password" | "text">("password");
@@ -48,10 +49,9 @@ function SignUp(): JSX.Element {
         e.preventDefault()
         if (password != confirmPassword) {
             const error: MismatchError = {
-                error: "Passwords do not match."
+                message: "Passwords do not match."
             }
-            console.log(error);
-
+            toast.error(error.message)
         }
         else {
             try {
@@ -59,12 +59,18 @@ function SignUp(): JSX.Element {
 
                 if (result.status === 200 && result.token) {
                     const user: string = JSON.stringify(result?.payload?.data)
-
                     login(result.token, user);
-
+                    toast.success(`${result.payload.status.message}`)
                     navigate(`/users/${result?.payload?.data?.id}`);
                 }
+                else {
+                    toast.error(`${result.payload.status.message}`)
+                    if(result.payload.status.errors){
+                        toast.error(result.payload.status.errors[0])
+                    }
+                }
             } catch (error) {
+                toast.error("Something went wrong.")
                 console.log(error); //HANDLE THESE ERRORS
             }
         }

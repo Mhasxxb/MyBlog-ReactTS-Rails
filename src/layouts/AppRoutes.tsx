@@ -51,7 +51,10 @@ function AppRoutes(): JSX.Element {
 
             <Route element={<ProtectedRoute />}>
                 {/* article routes */}
-                <Route path="articles" element={<ArticleIndex />} />
+                <Route path="articles" element={
+                    <PaginationProvider>
+                        <ArticleIndex />
+                    </PaginationProvider>} />
                 <Route path="articles/new" element={<NewArticle />} />
                 <Route path="articles/:id" element={<ShowArticle />} />
                 <Route path="articles/:id/edit" element={<EditArticle />} />

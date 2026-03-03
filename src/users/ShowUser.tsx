@@ -4,7 +4,8 @@ import { userApi } from "../api/usersApi/showUserApi";
 import { ApiResponse, Delete } from "../App.types";
 import { capitalize } from "../config";
 import { useParams } from "react-router-dom";
-import { destroyUser } from "../api/api/authenticationApi";
+import { destroyUser } from "../api/authentication/authenticationApi";
+import { toast } from "react-toastify";
 
 function UserProfile(): JSX.Element {
 
@@ -44,14 +45,16 @@ function UserProfile(): JSX.Element {
         const signOut = async () => {
             const result: Delete = await destroyUser()
             console.log(result);
-            return result.success
+            return result
         }
 
         const handleStorage = async () => {
             try {
-                if (await signOut()) {
+                const result = await signOut()
+                if (result.success) {
                     localStorage.clear()
                     sessionStorage.clear()
+                    toast.success(`${result.status?.message}`)
                     navigate("/")
                 }
             }
@@ -86,7 +89,7 @@ function UserProfile(): JSX.Element {
                     <div
                         className="w-28 h-28 flex justify-around items-center rounded-full border-2 text-center border-gray-500 bg-gray-300 cursor-pointer shadow-2xl font-bold text-purple-950 text-6xl shadow-gray-700/60 hover:shadow-gray-700/90 transition-all"
                     >
-                        {user && user.payload.data ? `${user.payload.data.first_name[0].toUpperCase()}${user.payload.data.last_name[0] ? user.payload.data.last_name[0].toUpperCase():""}` : null}
+                        {user && user.payload.data ? `${user.payload.data.first_name[0].toUpperCase()}${user.payload.data.last_name[0] ? user.payload.data.last_name[0].toUpperCase() : ""}` : null}
                     </div>
 
                     {/* Content */}
@@ -97,7 +100,7 @@ function UserProfile(): JSX.Element {
 
                             {/* Articles Block */}
                             <div className="flex flex-col space-y-2.5 items-center text-shadow-lg/10">
-                                <h5 className="text-purple-700 font-semibold">{5}</h5>
+                                <h5 className="text-purple-700 font-semibold">{user?.payload.data?.article_count}</h5>
                                 <h5 className="font-semibold text-gray-700">Articles</h5>
                             </div>
                             {/* Active Since Block */}
@@ -131,7 +134,7 @@ function UserProfile(): JSX.Element {
                     <h2 className="text-purple-700 font-semibold text-shadow-lg/10"><span className="text-gray-900">Email: </span>{user && user.payload.data ? `${user.payload.data.email}` : ""}</h2>
 
                     <p className="text-purple-600 text-center font-semibold text-shadow-lg/10">Writer - MyBlog</p>
-                    <p className="text-purple-500 text-center font-semibold text-shadow-lg/10">Made {5} contributions so far</p>
+                    <p className="text-purple-500 text-center font-semibold text-shadow-lg/10">Made {user?.payload.data?.article_count} contributions so far</p>
                 </div>
                 <div className="h-px min-w-full bg-purple-500 my-5" />
                 <div>
