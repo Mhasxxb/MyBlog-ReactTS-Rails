@@ -19,10 +19,9 @@ export type Data = {
 export type ApiResponse = {
   status: number;
   payload: {
-    status: {
-      message: string
-    },
+    message: string
     data?: Data
+    errors?: string[]
   }
   success: boolean
 }
@@ -113,6 +112,3 @@ export type ShowArticle = {
   error?: string,
   success: boolean
 }
-// "status": {
-// "message": "Bye! Your account has been successfully cancelled. We hope to see you again soon."
-// }

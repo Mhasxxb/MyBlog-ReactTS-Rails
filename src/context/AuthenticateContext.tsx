@@ -3,7 +3,6 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { AuthContextType } from "../App.types";
 import { api } from "../api/api";
 
-
 const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
@@ -15,13 +14,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   const login = (token: string, user: string) => {
-    const curUser = JSON.parse(user)
+    const curUser = JSON.parse(user);
     localStorage.setItem("authToken", token);
     localStorage.setItem("id", curUser.id);
     localStorage.setItem("first_name", curUser.first_name);
     localStorage.setItem("last_name", curUser.last_name);
     localStorage.setItem("email", curUser.email);
-
+    
     setIsAuthenticated(true);
   };
 
@@ -46,7 +45,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           logout();
         }
         return Promise.reject(error);
-      }
+      },
     );
 
     return () => {
@@ -58,7 +57,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
       {children}
     </AuthContext.Provider>
-    )
+  );
 };
 
 export const useAuth = () => {

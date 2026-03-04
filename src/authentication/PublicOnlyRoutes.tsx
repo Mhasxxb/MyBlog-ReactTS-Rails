@@ -1,24 +1,24 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "../context/AuthenticateContext";
-import { toast } from "react-toastify";
-
-
 
 const PublicOnlyRoute = () => {
-    const { isAuthenticated } = useAuth()
-    const last: null | string = sessionStorage.getItem("lastRoute")
-    const userId = localStorage.getItem("id");
-    console.log(last);
-    if (!isAuthenticated) {
-        return <Outlet />
-    }
-    else {
-        if (localStorage.getItem("id") != null){
-            toast.warn("Action forbidden!")
-        }
-        return <Navigate to={last ?? (userId ? `/users/${userId}` : '/users')} replace />;
-    }
-}
+  const { isAuthenticated } = useAuth();
+  const last = sessionStorage.getItem("lastRoute");
+  const userId = localStorage.getItem("id");
+
+  // If user is logged in, redirect to their dashboard (or last route)
+  if (isAuthenticated) {
+    return (
+      <Navigate
+        to={last ?? (userId ? `/users/${userId}` : "/users")}
+        state={{ message: "You are already logged in!" }}
+        replace
+      />
+    );
+  }
+
+  // If user is not logged in, allow access to public route
+  return <Outlet />;
+};
 
 export default PublicOnlyRoute;
-

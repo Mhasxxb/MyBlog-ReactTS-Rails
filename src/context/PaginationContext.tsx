@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, ReactNode } from "react";
 import { PaginationContextType } from "../App.types";
 
 const PaginationContext = createContext<PaginationContextType | undefined>(
-  undefined
+  undefined,
 );
 
 interface PaginationProviderProps {
@@ -33,9 +33,9 @@ export const PaginationProvider: React.FC<PaginationProviderProps> = ({
     }
   };
 
-  const resetOffset = ()=>{
-    setOffset(0)
-  }
+  const resetOffset = () => {
+    setOffset(0);
+  };
 
   return (
     <PaginationContext.Provider

@@ -10,7 +10,8 @@ type ArticleDeletionResponse = {
 export const destroyArticle = async (id: string) => {
     const token: string | null = localStorage.getItem("authToken");
     try {
-        const response = await api.delete(`${API_URL}api/v1/articles/${id}`,
+        const response = await api.delete(
+            `${API_URL}api/v1/articles/${id}`,
             {
                 headers: {
                     'Content-Type': 'application/json',

@@ -1,7 +1,6 @@
 import React from "react";
 import { usePagination } from "../context/PaginationContext";
 
-
 const PaginationControls: React.FC = () => {
   const { goNext, goPrev, currentPage, totalPages } = usePagination();
 
@@ -13,16 +12,27 @@ const PaginationControls: React.FC = () => {
                    hover:shadow-2xl hover:shadow-purple-950 
                    disabled:bg-purple-700 disabled:cursor-not-allowed 
                    text-white transition-all"
-        onClick={goPrev} disabled={currentPage === 1}>
+        onClick={goPrev}
+        disabled={currentPage === 1}
+      >
         Left
       </button>
 
       <span className="text-purple-700 font-semibold">
-        <span className="text-purple-800 font-semibold 
-                         text-shadow-sm/5" >{currentPage} </span>
+        <span
+          className="text-purple-800 font-semibold 
+                     text-shadow-sm/5"
+        >
+          {currentPage}{" "}
+        </span>
         of
-        <span className="text-purple-800 font-semibold 
-                         text-shadow-sm/5" > {totalPages || 1}</span>
+        <span
+          className="text-purple-800 font-semibold 
+                     text-shadow-sm/5"
+        >
+          {" "}
+          {totalPages || 1}
+        </span>
       </span>
 
       <button
@@ -32,7 +42,8 @@ const PaginationControls: React.FC = () => {
                    disabled:bg-purple-700 disabled:cursor-not-allowed 
                    text-white transition-all"
         onClick={goNext}
-        disabled={currentPage === totalPages}>
+        disabled={currentPage === totalPages}
+      >
         Right
       </button>
     </div>
