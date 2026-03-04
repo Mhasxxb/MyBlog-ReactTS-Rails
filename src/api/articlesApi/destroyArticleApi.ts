@@ -1,4 +1,4 @@
-import { api } from "../api";
+import { api } from "../apiAxiosWrapper";
 import { API_URL } from "../../config";
 
 type ArticleDeletionResponse = {

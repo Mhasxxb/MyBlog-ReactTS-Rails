@@ -1,7 +1,8 @@
 import { AxiosResponse } from "axios"
 import { API_URL } from "../../config"
-import { User, AuthApiResponse, Payload, Delete } from "../../App.types";
-import { api } from "../api";
+import { Payload, Delete } from "../../types/App.types";
+import { api } from "../apiAxiosWrapper";
+import { User, AuthApiResponse } from "../../types/authTypes/authTypes";
 
 export const authenticationApi = async (userBody: User, method: "login" | "signup"): Promise<AuthApiResponse> => {
 

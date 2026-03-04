@@ -1,6 +1,6 @@
-import { ArticleIndexType } from "../../App.types"
+import { ArticleIndexType } from "../../types/articlesType/articlesType"
 import { API_URL } from "../../config"
-import { api } from "../api"
+import { api } from "../apiAxiosWrapper"
 
 
 export const articleIndexApi = async (path: string, offset: number = 0, limit: number = 3): Promise<any> => {

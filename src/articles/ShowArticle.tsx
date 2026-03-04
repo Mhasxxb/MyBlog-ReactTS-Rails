@@ -1,18 +1,15 @@
 import { useEffect, useState, type JSX } from "react";
 import ArticleCard from "./ArticleCard";
-import { Article } from "../App.types";
 import { articleApi } from "../api/articlesApi/showArticleApi";
 import { useParams } from "react-router-dom";
+import { Article } from "../types/articlesType/articlesType";
 function ShowArticle(): JSX.Element {
   const [article, setArticle] = useState<Article | null>();
   const { id } = useParams<{ id: string }>();
 
   const getArticle = async () => {
     try {
-      const response = await articleApi(
-                                "api/v1/articles", 
-                                id as string
-                             );
+      const response = await articleApi("api/v1/articles", id as string);
       console.log(response);
 
       if (response.success) {

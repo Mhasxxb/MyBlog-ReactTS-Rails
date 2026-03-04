@@ -1,7 +1,7 @@
 import { useEffect, useState, type JSX } from "react";
 import Form from "../helpers/FormHelper";
 import { articleApi } from "../api/articlesApi/showArticleApi";
-import { Article, ApiArticle } from "../App.types";
+import { Article, ApiArticle } from "../types/articlesType/articlesType";
 import { useNavigate, useParams } from "react-router-dom";
 import { updateArticleApi } from "../api/articlesApi/editArticleApi";
 import { toast } from "react-toastify";

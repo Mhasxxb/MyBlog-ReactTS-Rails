@@ -1,6 +1,6 @@
-import { api } from "../api"
+import { api } from "../apiAxiosWrapper"
 import { API_URL } from "../../config"
-import { ShowArticle } from "../../App.types"
+import { ShowArticle } from "../../types/articlesType/articlesType"
 
 export const articleApi = async (path: string, id: string | null): Promise<ShowArticle> => {
     const token = localStorage.getItem("authToken")

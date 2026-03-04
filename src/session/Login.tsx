@@ -2,8 +2,8 @@ import { ChangeEvent, useState, type JSX } from "react";
 import Form from "../helpers/FormHelper";
 import { Button } from "@headlessui/react";
 import { Link, useNavigate } from "react-router-dom";
-import { authenticationApi } from "../api/authentication/authenticationApi";
-import { AuthApiResponse, User } from "../App.types";
+import { authenticationApi } from "../api/authenticationApi/authenticationApi";
+import { AuthApiResponse, User } from "../types/authTypes/authTypes";
 import { useAuth } from "../context/AuthenticateContext";
 import { toast } from "react-toastify";
 
@@ -48,10 +48,7 @@ function Login(): JSX.Element {
     e.preventDefault();
 
     try {
-      const result: AuthApiResponse = await authenticationApi(
-                                              user, 
-                                              "login"
-                                            );
+      const result: AuthApiResponse = await authenticationApi(user, "login");
 
       if (result.status === 200 && result.token) {
         toast.success(`${result.payload.status.message}`);

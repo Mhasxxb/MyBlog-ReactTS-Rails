@@ -1,8 +1,8 @@
 import { ChangeEvent, useEffect, useState, type JSX } from "react";
 import Form from "../helpers/FormHelper";
-import { updateUserApi } from "../api/usersApi/editUserApi";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import { updateUserApi } from "../api/usersApi/editUserApi";
 
 function EditingLayout(): JSX.Element {
   // HANDLE THIS USING CONTEXT API

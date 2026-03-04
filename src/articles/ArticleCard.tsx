@@ -3,8 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { timeAgo } from "../config";
 import { destroyArticle } from "../api/articlesApi/destroyArticleApi";
 import { toast } from "react-toastify";
-import { Article } from "../App.types";
-
+import { Article } from "../types/articlesType/articlesType";
 function ArticleCard({
   truncate,
   articleBody,

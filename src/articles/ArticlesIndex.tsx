@@ -3,7 +3,7 @@ import ArticleCard from "./ArticleCard";
 import { articleIndexApi } from "../api/articlesApi/indexArticleApi";
 import { usePagination } from "../context/PaginationContext";
 import PaginationControls from "../helpers/PaginationHelper";
-import { Article } from "../App.types";
+import { Article } from "../types/articlesType/articlesType";
 
 function ArticleIndex(): JSX.Element {
   const { limit, offset, setTotalCount, resetOffset } = usePagination();

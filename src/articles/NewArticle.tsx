@@ -3,7 +3,7 @@ import Form from "../helpers/FormHelper";
 import { newArticleApi } from "../api/articlesApi/newArticleApi";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { ApiArticleResponse } from "../App.types";
+import { ApiArticleResponse } from "../types/articlesType/articlesType";
 
 function NewLayout(): JSX.Element {
   const [title, setTitle] = useState<string>("");

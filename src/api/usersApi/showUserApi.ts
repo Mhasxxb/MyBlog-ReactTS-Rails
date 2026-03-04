@@ -1,6 +1,6 @@
-import { api } from "../api"
+import { api } from "../apiAxiosWrapper";
 import { API_URL } from "../../config"
-import { ApiResponse } from "../../App.types"
+import { ApiResponse } from "../../types/userTypes/userTypes"
 
 export const userApi = async (path: string, id: string | null): Promise<ApiResponse> => {
     const token = localStorage.getItem("authToken")

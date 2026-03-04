@@ -1,7 +1,8 @@
 import { useEffect, useState, type JSX } from "react";
 import UserCard from "./UserCard";
 import { userIndexApi } from "../api/usersApi/indexUsersApi";
-import { ApiResponse, Data, UserIndexResponse } from "../App.types";
+import { UserIndexResponse } from "../types/userTypes/userTypes";
+import { Data } from "../types/App.types";
 import PaginationControls from "../helpers/PaginationHelper";
 import { usePagination } from "../context/PaginationContext";
 import { toast } from "react-toastify";
@@ -19,7 +20,7 @@ function UserIndex(): JSX.Element {
   const [users, setUsers] = useState<Data[] | null | undefined>([]);
 
   async function getUsersInfo(offset: number) {
-    const usersInfo: UserIndexResponse | ApiResponse = await userIndexApi(
+    const usersInfo: UserIndexResponse = await userIndexApi(
       `api/v1/users/`,
       offset,
     );

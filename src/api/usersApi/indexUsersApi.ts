@@ -1,6 +1,6 @@
-import { api } from "../api"
+import { api } from "../apiAxiosWrapper";
 import { API_URL } from "../../config"
-import { UserIndexResponse } from "../../App.types"
+import { UserIndexResponse } from "../../types/userTypes/userTypes"
 export const userIndexApi = async (
     path: string,
     offset: number = 0,

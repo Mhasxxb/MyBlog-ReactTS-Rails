@@ -1,6 +1,6 @@
-import { api } from "../api"
+import { api } from "../apiAxiosWrapper"
 import { API_URL } from "../../config"
-import { ApiArticleResponse, ApiArticle } from "../../App.types"
+import { ApiArticleResponse, ApiArticle } from "../../types/articlesType/articlesType"
 
 export const updateArticleApi = async (
     path: string,

@@ -2,10 +2,11 @@ import { ChangeEvent, useState, type JSX } from "react";
 import Form from "../helpers/FormHelper";
 import { Button } from "@headlessui/react";
 import { Link, useNavigate } from "react-router-dom";
-import { User, MismatchError, AuthApiResponse } from "../App.types";
-import { authenticationApi } from "../api/authentication/authenticationApi";
+import { User, AuthApiResponse } from "../types/authTypes/authTypes";
+import { authenticationApi } from "../api/authenticationApi/authenticationApi";
 import { useAuth } from "../context/AuthenticateContext";
 import { toast } from "react-toastify";
+import { MismatchError } from "../types/App.types";
 
 function SignUp(): JSX.Element {
   let [passwordType, setPasswordType] = useState<"password" | "text">(
@@ -55,10 +56,7 @@ function SignUp(): JSX.Element {
       toast.error(error.message);
     } else {
       try {
-        const result: AuthApiResponse = await authenticationApi(
-                                                user, 
-                                                "signup"
-                                              );
+        const result: AuthApiResponse = await authenticationApi(user, "signup");
 
         if (result.status === 200 && result.token) {
           const user: string = JSON.stringify(result?.payload?.data);

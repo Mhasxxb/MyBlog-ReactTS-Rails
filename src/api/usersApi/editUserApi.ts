@@ -1,6 +1,6 @@
-import { api } from "../api"
+import { api } from "../apiAxiosWrapper";
 import { API_URL } from "../../config"
-import { ApiResponse, UpdateUser } from "../../App.types"
+import { ApiResponse, UpdateUser } from "../../types/userTypes/userTypes"
 
 export const updateUserApi = async (
   path: string,

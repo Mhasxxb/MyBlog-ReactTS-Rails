@@ -1,8 +1,9 @@
 import { useEffect, useState, type JSX } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Data, Delete } from "../App.types";
+import { Delete } from "../types/App.types";
+import { Data } from "../types/App.types";
 import { capitalize } from "../config";
-import { destroyUser } from "../api/authentication/authenticationApi";
+import { destroyUser } from "../api/authenticationApi/authenticationApi";
 
 type UserCardProps = {
   user: Data;
@@ -55,9 +56,7 @@ function UserCard({ user }: UserCardProps): JSX.Element {
           <div className="flex flex-1 flex-col space-y-3 items-center">
             <div className="w-28 h-28 flex justify-around items-center rounded-full border-2 text-center border-gray-500 bg-gray-300 cursor-pointer shadow-2xl font-bold text-purple-950 text-6xl shadow-gray-700/60 hover:shadow-gray-700/90 transition-all">
               {`${user.first_name[0].toUpperCase()}${
-                user.last_name[0] 
-                ? user.last_name[0].toUpperCase() 
-                : ""
+                user.last_name[0] ? user.last_name[0].toUpperCase() : ""
               }`}
             </div>
             <h2 className="text-purple-800 font-semibold cursor-pointer text-shadow-lg/20">
@@ -67,9 +66,7 @@ function UserCard({ user }: UserCardProps): JSX.Element {
 
           <div className="flex-4">
             <h2 className="text-purple-800 font-semibold text-shadow-lg/20">
-              Made {contributions 
-                    ? contributions 
-                    : "no"} Contributions so far.
+              Made {contributions ? contributions : "no"} Contributions so far.
             </h2>
           </div>
         </div>

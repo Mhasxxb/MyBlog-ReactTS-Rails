@@ -1,11 +1,12 @@
 import { useEffect, useState, type JSX } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { userApi } from "../api/usersApi/showUserApi";
-import { ApiResponse, Delete } from "../App.types";
+import { Delete } from "../types/App.types";
+import { ApiResponse } from "../types/userTypes/userTypes";
 import { capitalize } from "../config";
 import { useParams } from "react-router-dom";
-import { destroyUser } from "../api/authentication/authenticationApi";
+import { destroyUser } from "../api/authenticationApi/authenticationApi";
 import { toast } from "react-toastify";
+import { userApi } from "../api/usersApi/showUserApi";
 
 function UserProfile(): JSX.Element {
   const [user, setUser] = useState<ApiResponse | null>(null);
@@ -82,9 +83,11 @@ function UserProfile(): JSX.Element {
           {/* Profile Image */}
           <div className="w-28 h-28 flex justify-around items-center rounded-full border-2 text-center border-gray-500 bg-gray-300 cursor-pointer shadow-2xl font-bold text-purple-950 text-6xl shadow-gray-700/60 hover:shadow-gray-700/90 transition-all">
             {user && user.payload.data
-              ? `${user.payload.data.first_name[0].toUpperCase()}${user.payload.data.last_name[0] 
-                    ? user.payload.data.last_name[0].toUpperCase() 
-                    : ""}`
+              ? `${user.payload.data.first_name[0].toUpperCase()}${
+                  user.payload.data.last_name[0]
+                    ? user.payload.data.last_name[0].toUpperCase()
+                    : ""
+                }`
               : null}
           </div>
 
@@ -97,19 +100,15 @@ function UserProfile(): JSX.Element {
                 <h5 className="text-purple-700 font-semibold">
                   {user?.payload.data?.article_count}
                 </h5>
-                <h5 className="font-semibold text-gray-700">
-                  Articles
-                </h5>
+                <h5 className="font-semibold text-gray-700">Articles</h5>
               </div>
               {/* Active Since Block */}
               <div className="flex flex-col space-y-2.5 items-center text-shadow-lg/10">
-                {user && user.payload.data 
-                  ? (
-                      <h5 className="text-purple-700 font-semibold">
-                        {user.payload.data.created_at.slice(0, 10)}
-                      </h5>
-                    ) 
-                  : null}
+                {user && user.payload.data ? (
+                  <h5 className="text-purple-700 font-semibold">
+                    {user.payload.data.created_at.slice(0, 10)}
+                  </h5>
+                ) : null}
                 <h5 className="font-semibold text-gray-700">Active since</h5>
               </div>
             </div>

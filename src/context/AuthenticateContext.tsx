@@ -1,7 +1,7 @@
 // AuthContext.tsx
 import { createContext, useContext, useEffect, useState } from "react";
-import { AuthContextType } from "../App.types";
-import { api } from "../api/api";
+import { api } from "../api/apiAxiosWrapper";
+import { AuthContextType } from "../types/contextTypes/contextTypes";
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     localStorage.setItem("first_name", curUser.first_name);
     localStorage.setItem("last_name", curUser.last_name);
     localStorage.setItem("email", curUser.email);
-    
+
     setIsAuthenticated(true);
   };
 

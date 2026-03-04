@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
-import { PaginationContextType } from "../App.types";
+import { PaginationContextType } from "../types/contextTypes/contextTypes";
 
 const PaginationContext = createContext<PaginationContextType | undefined>(
   undefined,
