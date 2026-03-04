@@ -14,7 +14,7 @@ function ArticleCard({
   type: 0 | 1;
 }): JSX.Element {
   const navigate = useNavigate();
-  const [block, setBlock] = useState<string>("");
+  const [block, setBlock] = useState<boolean>(true);
   const handleDelete = async (id: string) => {
     const confirmed = window.confirm(
       "Are you sure you want to delete this article?",
@@ -31,7 +31,7 @@ function ArticleCard({
 
       toast.success("Article deleted successfully.");
       if (type === 0) {
-        setBlock("none");
+        setBlock(false);
       } else {
         navigate("/articles");
       }
@@ -41,7 +41,7 @@ function ArticleCard({
     }
   };
 
-  return (
+  return block ? (
     <div className="flex justify-center" style={{ display: `${block}` }}>
       <div className=" shadow-2xl w-full max-w-3xl m-10 outline-2 outline-gray-100 bg-amber-50 rounded-2xl p-5 shadow-gray-400/70">
         <header className="text-center">
@@ -149,6 +149,8 @@ function ArticleCard({
         </footer>
       </div>
     </div>
+  ) : (
+    <></>
   );
 }
 

@@ -1,4 +1,4 @@
-import { api } from "../apiAxiosWrapper";
+import { api } from "../../api/apiAxiosWrapper";
 import { API_URL } from "../../config"
 import { UserIndexResponse } from "../../types/userTypes/userTypes"
 export const userIndexApi = async (

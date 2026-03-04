@@ -1,5 +1,6 @@
 import { api } from "../apiAxiosWrapper";
 import { API_URL } from "../../config";
+import { AxiosError } from "axios";
 
 type ArticleDeletionResponse = {
     message?: string,
@@ -27,7 +28,6 @@ export const destroyArticle = async (id: string) => {
         return result
     }
     catch (error: any) {
-        console.log(error.response);
         const result: ArticleDeletionResponse = {
             error: error.response.data.error,
             success: false,

@@ -33,7 +33,8 @@ function UserIndex(): JSX.Element {
     const fetchUsers = async () => {
       const result: UserIndexResponse = await getUsersInfo(offset); // wait for resolved data
       if (result.success) {
-        setUsers(result.payload?.data);
+        setUsers(result.payload?.users);
+        console.log();
         setTotalCount(result.payload?.meta.count as number);
       } else {
         toast.error("Something went wrong.");
@@ -46,6 +47,7 @@ function UserIndex(): JSX.Element {
   return (
     <>
       <PaginationControls />
+
       <div className="my-10">
         {users && users.length > 0
           ? users?.map((user: Data) => {

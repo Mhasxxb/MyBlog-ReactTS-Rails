@@ -23,8 +23,6 @@ export const updateArticleApi = async (
                     Authorization: `Bearer ${token}`
                 }
             })
-
-        console.log(response);
         const result: ApiArticleResponse = {
             message: response.data.message,
             status: response.status,

@@ -1,80 +1,35 @@
 import { useEffect, useState, type JSX } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Delete } from "../types/App.types";
+import { Link, useParams } from "react-router-dom";
 import { ApiResponse } from "../types/userTypes/userTypes";
 import { capitalize } from "../config";
-import { useParams } from "react-router-dom";
-import { destroyUser } from "../api/authenticationApi/authenticationApi";
-import { toast } from "react-toastify";
 import { userApi } from "../api/usersApi/showUserApi";
+import { useAuth } from "../context/AuthenticateContext";
 
 function UserProfile(): JSX.Element {
   const [user, setUser] = useState<ApiResponse | null>(null);
-  const [deleteUser, setDeleteUser] = useState<boolean>(false);
+  const { id } = useParams<{ id: string }>();
+  const { deleteAccount } = useAuth(); // ✅ use centralized delete logic
 
-  const navigate = useNavigate();
   async function getUserInfo(id: string) {
     const userInfo = await userApi(`api/v1/users/`, id);
-    console.log(userInfo);
     return userInfo;
   }
 
-  // HOW TO GET HREF
-  // const id: string = window.location.href.split('/')[4]
-
-  // A BETTER WAY TO GET USER ID
-
-  const { id } = useParams<{ id: string }>();
-
-  console.log(window.location.href);
-
   useEffect(() => {
     const fetchUser = async () => {
-      const result: ApiResponse = await getUserInfo(id as string); // wait for resolved data
-      console.log(result);
-
-      setUser(result); // now this is ApiResponse
-      console.log(user);
+      const result: ApiResponse = await getUserInfo(id as string);
+      setUser(result);
     };
-
     fetchUser();
   }, [id]);
 
-  useEffect(() => {
-    const signOut = async () => {
-      const result: Delete = await destroyUser();
-      toast.success(result.status?.message);
-      return result;
-    };
-
-    const handleStorage = async () => {
-      try {
-        const result = await signOut();
-        if (result.success) {
-          localStorage.clear();
-          sessionStorage.clear();
-          toast.success(`${result.status?.message}`);
-          navigate("/");
-        }
-      } catch (e: any) {
-        console.log(e);
-      }
-    };
-
-    if (deleteUser) {
-      setDeleteUser(false);
-      handleStorage();
-    }
-  }, [deleteUser]);
-
-  // HAVE TO COMPLETE THIS WHEN ARTICLES ARE ADDED
-  // function toggleContributions(): void {
-
-  // }
-
   const handleDelete = () => {
-    setDeleteUser(confirm("Are you sure you want to delete your profile?"));
+    const confirmDelete = confirm("Are you sure you want to delete your profile?");
+    if (confirmDelete) {
+      deleteAccount(); // ✅ call centralized function
+    }
   };
+
   return (
     <>
       {/* header for pic and name email */}

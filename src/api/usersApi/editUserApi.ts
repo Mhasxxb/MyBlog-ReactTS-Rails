@@ -39,7 +39,6 @@ export const updateUserApi = async (
       status: error.response.status,
       success: false
     }
-    console.log(result);
     return result
   }
 }

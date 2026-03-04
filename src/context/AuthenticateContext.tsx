@@ -2,17 +2,19 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { api } from "../api/apiAxiosWrapper";
 import { AuthContextType } from "../types/contextTypes/contextTypes";
+import { destroyUser } from "../api/authenticationApi/authenticationApi";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-
+  const navigate = useNavigate()
   useEffect(() => {
     const token = localStorage.getItem("authToken");
     if (token) setIsAuthenticated(true);
   }, []);
-
   const login = (token: string, user: string) => {
     const curUser = JSON.parse(user);
     localStorage.setItem("authToken", token);
@@ -36,6 +38,23 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setIsAuthenticated(false);
   };
 
+  const deleteAccount = async () => {
+    try {
+      const result = await destroyUser();
+      if (result.success) {
+        localStorage.clear();
+        sessionStorage.clear();
+        toast.success(result.status?.message || "Account deleted successfully");
+        navigate("/");
+      } else {
+        toast.error("Failed to delete account.");
+      }
+    } catch (error: any) {
+      console.error(error);
+      toast.error("Something went wrong while deleting your account.");
+    }
+  };
+
   useEffect(() => {
     const interceptor = api.interceptors.response.use(
       (response) => response,
@@ -54,7 +73,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, login, logout, deleteAccount }}>
       {children}
     </AuthContext.Provider>
   );

@@ -26,20 +26,6 @@ function Login(): JSX.Element {
     email: email,
     password: password,
   };
-  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
-  //     e.preventDefault()
-  //     try {
-  //         const result: ApiResponse = await authenticationApi(user, "login")
-  //         console.log(result)
-  //         if (result.status === 200) {
-  //             console.log(result.status)
-  //             navigate(`/users/${result.payload.data.email}`)
-  //         }
-  //     }
-  //     catch (error) {
-  //         console.log(error)
-  //     }
-  // }
 
   const { login } = useAuth();
   const handleSubmit = async (

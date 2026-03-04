@@ -1,9 +1,8 @@
-import { useEffect, useState, type JSX } from "react";
+import { type JSX } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Delete } from "../types/App.types";
 import { Data } from "../types/App.types";
 import { capitalize } from "../config";
-import { destroyUser } from "../api/authenticationApi/authenticationApi";
+import { useAuth } from "../context/AuthenticateContext"; // ✅ import auth hook
 
 type UserCardProps = {
   user: Data;
@@ -15,38 +14,14 @@ function UserCard({ user }: UserCardProps): JSX.Element {
     (user.last_name ? ` ${capitalize(user.last_name)}` : "");
 
   const contributions = user.article_count;
-  const [deleteUser, setDeleteUser] = useState<boolean>(false);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const signOut = async () => {
-      const result: Delete = await destroyUser();
-      console.log(result);
-      return result.success;
-    };
-
-    const handleStorage = async () => {
-      try {
-        if (await signOut()) {
-          localStorage.clear();
-          sessionStorage.clear();
-        }
-      } catch (e: any) {
-        console.log(e);
-      }
-    };
-
-    if (deleteUser) {
-      setDeleteUser(false);
-      handleStorage();
-      navigate("/");
-    } else {
-      return;
-    }
-  }, [deleteUser]);
+  const { deleteAccount } = useAuth(); // ✅ use centralized delete logic
 
   const handleDelete = () => {
-    setDeleteUser(confirm("Are you sure you want to delete your profile?"));
+    const confirmDelete = confirm("Are you sure you want to delete your profile?");
+    if (confirmDelete) {
+      deleteAccount(); // ✅ call centralized function
+    }
   };
 
   return (

@@ -22,8 +22,6 @@ export const newArticleApi = async (
                     Authorization: `Bearer ${token}`
                 }
             })
-
-        console.log(response);
         const result: ApiArticleResponse = {
             id: response.data.article.id,
             message: response.data.message,

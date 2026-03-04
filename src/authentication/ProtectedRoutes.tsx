@@ -4,15 +4,15 @@ import { useAuth } from "../context/AuthenticateContext";
 import { toast } from "react-toastify";
 
 function ProtectedRoute(): ReactElement {
+  const { isAuthenticated } = useAuth();
   useEffect(() => {
     const publicRoutes = ["/", "/login", "/signup"];
 
     if (!isAuthenticated && !publicRoutes.includes(location.pathname)) {
       toast.warn("Please login first");
     }
-  }, [location.pathname]);
+  }, [location.pathname, isAuthenticated]);
   
-  const { isAuthenticated } = useAuth();
   if (isAuthenticated) {
     return <Outlet />;
   } else {

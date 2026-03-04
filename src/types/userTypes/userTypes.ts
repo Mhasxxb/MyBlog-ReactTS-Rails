@@ -17,7 +17,7 @@ export type ApiResponse = {
 export type UserIndexResponse = {
   status: number,
   payload?: {
-    data: Data[],
+    users: Data[],
     meta: Meta
   },
   success?: boolean,
