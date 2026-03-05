@@ -7,6 +7,7 @@ import {
 Link;
 import type { JSX } from "react";
 import { Link } from "react-router-dom";
+
 type ComponentType = {
   title: string;
   firstVal: string;

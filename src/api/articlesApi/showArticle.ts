@@ -11,13 +11,11 @@ export const articleApi = async (path: string, id: string | null): Promise<ShowA
                 Authorization: `Bearer ${token}`
             }
         })
-        console.log(response.data.data)
         const result = {
             data: response.data.data,
             success: true
         }
         return result
-
     }
     catch (error: any) {
         const result: ShowArticle = {
@@ -25,6 +23,5 @@ export const articleApi = async (path: string, id: string | null): Promise<ShowA
             success: false
         }
         return result
-
     }
 }

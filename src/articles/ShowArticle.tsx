@@ -1,8 +1,9 @@
 import { useEffect, useState, type JSX } from "react";
 import ArticleCard from "./ArticleCard";
-import { articleApi } from "../api/articlesApi/showArticleApi";
+import { articleApi } from "../api/articlesApi/showArticle";
 import { useParams } from "react-router-dom";
 import { Article } from "../types/articlesType/articlesType";
+
 function ShowArticle(): JSX.Element {
   const [article, setArticle] = useState<Article | null>();
   const { id } = useParams<{ id: string }>();

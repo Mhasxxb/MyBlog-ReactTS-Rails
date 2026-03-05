@@ -2,16 +2,21 @@ import { ChangeEvent, useState, type JSX } from "react";
 import Form from "../helpers/FormHelper";
 import { Button } from "@headlessui/react";
 import { Link, useNavigate } from "react-router-dom";
-import { authenticationApi } from "../api/authenticationApi/authenticationApi";
+import { authenticationApi } from "../api/authenticationApi/authentication";
 import { AuthApiResponse, User } from "../types/authTypes/authTypes";
 import { useAuth } from "../context/AuthenticateContext";
 import { toast } from "react-toastify";
+import EyeIcon from "../shared/EyeIcon";
 
 function Login(): JSX.Element {
   const [passwordType, setPasswordType] = useState<"password" | "text">(
     "password",
   );
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+
   const navigate = useNavigate();
+
   function togglePasswordType() {
     if (passwordType === "password") {
       setPasswordType("text");
@@ -19,9 +24,7 @@ function Login(): JSX.Element {
       setPasswordType("password");
     }
   }
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-
+  
   const user: User = {
     email: email,
     password: password,
@@ -49,6 +52,7 @@ function Login(): JSX.Element {
       console.log(error);
     }
   };
+  
   return (
     <>
       <form action="" onSubmit={handleSubmit}>
@@ -98,26 +102,7 @@ function Login(): JSX.Element {
               />
               {/* sett the position of the icon */}
               <div className="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer text-gray-500 hover:text-purple-600">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  onClick={(): void => togglePasswordType()}
-                  className="size-5"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                  />
-                </svg>
+                <EyeIcon togglePasswordType={togglePasswordType} />
               </div>
             </div>
           </div>
@@ -153,4 +138,5 @@ function LoginForm(): JSX.Element {
     </>
   );
 }
+
 export default LoginForm;

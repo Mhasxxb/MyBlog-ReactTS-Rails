@@ -1,10 +1,11 @@
 import { useEffect, useState, type JSX } from "react";
 import Form from "../helpers/FormHelper";
-import { articleApi } from "../api/articlesApi/showArticleApi";
+import { articleApi } from "../api/articlesApi/showArticle";
 import { Article, ApiArticle } from "../types/articlesType/articlesType";
 import { useNavigate, useParams } from "react-router-dom";
-import { updateArticleApi } from "../api/articlesApi/editArticleApi";
+import { updateArticleApi } from "../api/articlesApi/editArticle";
 import { toast } from "react-toastify";
+
 function EditingLayout(): JSX.Element {
   const [article, setArticle] = useState<Article | null>();
   const updatedValues: ApiArticle = {
@@ -39,7 +40,7 @@ function EditingLayout(): JSX.Element {
     e.preventDefault();
     if (confirm("Are you sure you want to make these changes?")) {
       try {
-        let response = await updateArticleApi("api/v1", id as string, {
+        const response = await updateArticleApi("api/v1", id as string, {
           title: title,
           description: description,
         });
@@ -115,6 +116,7 @@ function EditingLayout(): JSX.Element {
     </form>
   );
 }
+
 function EditArticle(): JSX.Element {
   return (
     <>

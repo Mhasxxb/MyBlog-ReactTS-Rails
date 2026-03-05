@@ -1,12 +1,12 @@
-import { api } from "../../api/apiAxiosWrapper";
+import { api } from "../apiAxiosWrapper";
 import { API_URL } from "../../config"
 import { UserIndexResponse } from "../../types/userTypes/userTypes"
+
 export const userIndexApi = async (
     path: string,
     offset: number = 0,
     limit: number = 3
 ): Promise<UserIndexResponse> => {
-
     const token = localStorage.getItem("authToken")
     try {
         const response = await api.get(

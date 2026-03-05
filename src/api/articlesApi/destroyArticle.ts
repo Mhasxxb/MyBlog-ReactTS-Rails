@@ -1,6 +1,5 @@
 import { api } from "../apiAxiosWrapper";
 import { API_URL } from "../../config";
-import { AxiosError } from "axios";
 
 type ArticleDeletionResponse = {
     message?: string,
@@ -8,6 +7,7 @@ type ArticleDeletionResponse = {
     success: boolean,
     status: number
 }
+
 export const destroyArticle = async (id: string) => {
     const token: string | null = localStorage.getItem("authToken");
     try {

@@ -1,9 +1,11 @@
 import { JSX, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { timeAgo } from "../config";
-import { destroyArticle } from "../api/articlesApi/destroyArticleApi";
+import { timeAgo } from "../lib/timeAgo";
+import { destroyArticle } from "../api/articlesApi/destroyArticle";
 import { toast } from "react-toastify";
 import { Article } from "../types/articlesType/articlesType";
+import Button from "../shared/Button";
+
 function ArticleCard({
   truncate,
   articleBody,
@@ -15,14 +17,14 @@ function ArticleCard({
 }): JSX.Element {
   const navigate = useNavigate();
   const [block, setBlock] = useState<boolean>(true);
-  const handleDelete = async (id: string) => {
+  const handleDelete = async (id?: string) => {
     const confirmed = window.confirm(
       "Are you sure you want to delete this article?",
     );
     if (!confirmed) return;
 
     try {
-      const result = await destroyArticle(id);
+      const result = await destroyArticle(id as string);
 
       if (!result.success) {
         alert(result.error || "Failed to delete the article.");
@@ -88,52 +90,39 @@ function ArticleCard({
             <div className="flex justify-between mx-2">
               <div>
                 <Link to={`/articles/${articleBody.id}`}>
-                  <button className="cursor-pointer px-2 p-1 mx-3 border border-green-500 text-green-500 rounded hover:bg-green-500 hover:text-amber-50 hover:shadow-2xl hover:shadow-green-900 transition-all">
-                    Show
-                  </button>
+                  <Button text="Show" color="green" />
                 </Link>
                 <Link to={`/articles/${articleBody.id}/edit`}>
-                  <button className="cursor-pointer px-2 p-1 mx-3 border border-blue-500 text-blue-500 rounded hover:bg-blue-500 hover:text-amber-50 hover:shadow-2xl hover:shadow-blue-900 transition-all">
-                    Edit
-                  </button>
+                  <Button text="Edit" color="blue" />
                 </Link>
               </div>
               <div>
-                <button
-                  className="cursor-pointer px-2 p-1 mx-3 border border-red-500 text-red-500 rounded hover:bg-red-500 hover:text-amber-50 hover:shadow-2xl hover:shadow-red-900 transition-all"
-                  onClick={() => {
-                    handleDelete(articleBody.id.toString());
-                  }}
-                  id="disable-del-btn"
-                >
-                  Delete
-                </button>
+                <Button
+                  text="Delete"
+                  color="red"
+                  onClick={handleDelete}
+                  id={articleBody.id.toString()}
+                />
               </div>
             </div>
           ) : type === 0 ? (
             <div className="flex justify-end mx-2">
               <Link to={`/articles/${articleBody.id}`}>
-                <button className="cursor-pointer px-2 p-1 mx-3 border border-green-500 text-green-500 rounded hover:bg-green-500 hover:text-amber-50 hover:shadow-2xl hover:shadow-green-900 transition-all">
-                  Show
-                </button>
+                <Button text="Show" color="green" />
               </Link>
             </div>
           ) : type === 1 &&
             articleBody.user_id.toString() === localStorage.getItem("id") ? (
             <div>
               <Link to={`/articles/${articleBody.id}/edit`}>
-                <button className="cursor-pointer px-2 p-1 mx-3 border border-blue-500 text-blue-500 rounded hover:bg-blue-500 hover:text-amber-50 hover:shadow-2xl hover:shadow-blue-900 transition-all">
-                  Edit
-                </button>
+                <Button text="Edit" color="blue"/>
               </Link>
-              <button
-                className="cursor-pointer px-2 p-1 mx-3 border border-red-500 text-red-500 rounded hover:bg-red-500 hover:text-amber-50 hover:shadow-2xl hover:shadow-red-900 transition-all"
-                onClick={() => {
-                  handleDelete(articleBody.id.toString());
-                }}
-              >
-                Delete
-              </button>
+              <Button
+                text="Delete"
+                color="red"
+                onClick={handleDelete}
+                id={articleBody.id.toString()}
+              />
             </div>
           ) : null}
         </div>

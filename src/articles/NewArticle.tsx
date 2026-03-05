@@ -1,6 +1,6 @@
 import { useState, type JSX } from "react";
 import Form from "../helpers/FormHelper";
-import { newArticleApi } from "../api/articlesApi/newArticleApi";
+import { newArticleApi } from "../api/articlesApi/newArticle";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { ApiArticleResponse } from "../types/articlesType/articlesType";
@@ -9,6 +9,7 @@ function NewLayout(): JSX.Element {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const navigate = useNavigate();
+
   const handleSubmit = async (
     e: React.FormEvent<HTMLFormElement>,
   ): Promise<void> => {
@@ -16,7 +17,7 @@ function NewLayout(): JSX.Element {
     console.log("sub");
     if (confirm("Do you want to post this article?")) {
       try {
-        let response: ApiArticleResponse = await newArticleApi("api/v1", {
+        const response: ApiArticleResponse = await newArticleApi("api/v1", {
           title: title,
           description: description,
         });
@@ -32,6 +33,7 @@ function NewLayout(): JSX.Element {
       }
     }
   };
+
   return (
     <form
       onSubmit={(e: React.FormEvent<HTMLFormElement>): void => {
@@ -91,6 +93,7 @@ function NewLayout(): JSX.Element {
     </form>
   );
 }
+
 function NewArticle(): JSX.Element {
   return (
     <>

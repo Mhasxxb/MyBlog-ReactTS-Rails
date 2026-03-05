@@ -1,24 +1,25 @@
 import { type JSX } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Data } from "../types/App.types";
-import { capitalize } from "../config";
+import { capitalize } from "../lib/capitalizeString";
 import { useAuth } from "../context/AuthenticateContext"; // ✅ import auth hook
+import Button from "../shared/Button";
 
 type UserCardProps = {
   user: Data;
 };
 
 function UserCard({ user }: UserCardProps): JSX.Element {
+  const contributions = user.article_count;
+  const { deleteAccount } = useAuth();
   const name: string =
     capitalize(user.first_name) +
     (user.last_name ? ` ${capitalize(user.last_name)}` : "");
 
-  const contributions = user.article_count;
-  const navigate = useNavigate();
-  const { deleteAccount } = useAuth(); // ✅ use centralized delete logic
-
   const handleDelete = () => {
-    const confirmDelete = confirm("Are you sure you want to delete your profile?");
+    const confirmDelete = confirm(
+      "Are you sure you want to delete your profile?",
+    );
     if (confirmDelete) {
       deleteAccount(); // ✅ call centralized function
     }
@@ -52,33 +53,21 @@ function UserCard({ user }: UserCardProps): JSX.Element {
           <div className="flex justify-between mx-2">
             <div>
               <Link to={`/users/${user.id}`}>
-                <button className="cursor-pointer px-2 p-1 mx-3 border border-green-500 text-green-500 rounded hover:bg-green-500 hover:text-amber-50 hover:shadow-2xl hover:shadow-green-900 transition_all">
-                  View
-                </button>
+                <Button text="View" color="green" />
               </Link>
 
-              <Link
-                to={`/users/${user.id}/edit`}
-                className="cursor-pointer px-2 p-1 mx-3 border border-blue-500 text-blue-500 rounded hover:bg-blue-500 hover:text-amber-50 hover:shadow-2xl hover:shadow-blue-900 transition_all "
-              >
-                <button>Edit</button>
+              <Link to={`/users/${user.id}/edit`}>
+                <Button text="Edit" color="blue" />
               </Link>
             </div>
             <div>
-              <button
-                className="cursor-pointer px-2 p-1 mx-3 border border-red-500 text-red-500 rounded hover:bg-red-500 hover:text-amber-50 hover:shadow-2xl hover:shadow-red-900 transition_all"
-                onClick={handleDelete}
-              >
-                Delete
-              </button>
+              <Button text="Delete" color="red" onClick={handleDelete} />
             </div>
           </div>
         ) : (
           <div className="flex mx-2 justify-end">
             <Link to={`/users/${user.id}`}>
-              <button className="cursor-pointer px-2 p-1 mx-3 border border-green-500 text-green-500 rounded hover:bg-green-500 hover:text-amber-50 hover:shadow-2xl hover:shadow-green-900 transition_all">
-                View
-              </button>
+              <Button text="View" color="green" />
             </Link>
           </div>
         )}

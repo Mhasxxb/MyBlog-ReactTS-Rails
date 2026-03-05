@@ -19,7 +19,9 @@ function Navbar(): JSX.Element {
       navigate("/");
     }
   };
+  
   const id: string | null = localStorage.getItem("id");
+
   return (
     <>
       <nav>

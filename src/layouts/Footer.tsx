@@ -1,5 +1,6 @@
 import { JSX } from "react";
 import { useAuth } from "../context/AuthenticateContext";
+
 function Footer(): JSX.Element {
   const { isAuthenticated } = useAuth();
   return (

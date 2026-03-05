@@ -1,6 +1,6 @@
 import { useEffect, useState, type JSX } from "react";
 import UserCard from "./UserCard";
-import { userIndexApi } from "../api/usersApi/indexUsersApi";
+import { userIndexApi } from "../api/usersApi/indexUsers";
 import { UserIndexResponse } from "../types/userTypes/userTypes";
 import { Data } from "../types/App.types";
 import PaginationControls from "../helpers/PaginationHelper";
@@ -10,14 +10,8 @@ import { toast } from "react-toastify";
 function UserIndex(): JSX.Element {
   // const response
   const { limit, offset, setTotalCount, resetOffset } = usePagination();
-
-  const [check, setCheck] = useState<boolean>(false);
-  useEffect(() => {
-    resetOffset();
-    setCheck(!check);
-  }, []);
-
   const [users, setUsers] = useState<Data[] | null | undefined>([]);
+  const [check, setCheck] = useState<boolean>(false);
 
   async function getUsersInfo(offset: number) {
     const usersInfo: UserIndexResponse = await userIndexApi(
@@ -28,6 +22,11 @@ function UserIndex(): JSX.Element {
     console.log(`api/v1/users/?limit=${limit}&offset=${offset}`);
     return usersInfo;
   }
+
+  useEffect(() => {
+      resetOffset();
+      setCheck(!check);
+    }, []);
 
   useEffect(() => {
     const fetchUsers = async () => {

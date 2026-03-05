@@ -1,4 +1,5 @@
 import { Meta } from "../App.types"
+
 export type Article = {
   id: number,
   title: string,
@@ -7,6 +8,7 @@ export type Article = {
   user_id: number
   created_at: string
 }
+
 export type ArticleIndexType = {
   response: {
     articles?: Article[],
@@ -15,15 +17,18 @@ export type ArticleIndexType = {
   }
   success: boolean
 }
+
 export type ApiArticle = {
   title: string,
   description: string
 }
+
 export type ShowArticle = {
   data?: Article,
   error?: string,
   success: boolean
 }
+
 export type ApiArticleResponse = {
   id?: number,
   message?: string,

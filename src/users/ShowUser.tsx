@@ -1,19 +1,30 @@
 import { useEffect, useState, type JSX } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ApiResponse } from "../types/userTypes/userTypes";
-import { capitalize } from "../config";
-import { userApi } from "../api/usersApi/showUserApi";
+import { capitalize } from "../lib/capitalizeString";
+import { userApi } from "../api/usersApi/showUser";
 import { useAuth } from "../context/AuthenticateContext";
+import ArrowDown from "../shared/ArrowDown";
+import Button from "../shared/Button";
 
 function UserProfile(): JSX.Element {
+  const { deleteAccount } = useAuth(); 
   const [user, setUser] = useState<ApiResponse | null>(null);
   const { id } = useParams<{ id: string }>();
-  const { deleteAccount } = useAuth(); // ✅ use centralized delete logic
 
   async function getUserInfo(id: string) {
     const userInfo = await userApi(`api/v1/users/`, id);
     return userInfo;
   }
+
+  const handleDelete = () => {
+    const confirmDelete = confirm(
+      "Are you sure you want to delete your profile?",
+    );
+    if (confirmDelete) {
+      deleteAccount(); 
+    }
+  };
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -22,13 +33,6 @@ function UserProfile(): JSX.Element {
     };
     fetchUser();
   }, [id]);
-
-  const handleDelete = () => {
-    const confirmDelete = confirm("Are you sure you want to delete your profile?");
-    if (confirmDelete) {
-      deleteAccount(); // ✅ call centralized function
-    }
-  };
 
   return (
     <>
@@ -45,7 +49,6 @@ function UserProfile(): JSX.Element {
                 }`
               : null}
           </div>
-
           {/* Content */}
           <div className="flex flex-col flex-1 gap-4">
             {/* Top Stats */}
@@ -68,7 +71,6 @@ function UserProfile(): JSX.Element {
               </div>
             </div>
             <div className="h-px bg-purple-500" />
-
             {/* Bottom Rows */}
             {user &&
             user.payload.data &&
@@ -78,15 +80,14 @@ function UserProfile(): JSX.Element {
                   to="edit"
                   className="cursor-pointer px-2 p-1 mx-3 border border-blue-500 text-blue-500 rounded hover:bg-blue-500 hover:text-amber-50 hover:shadow-2xl hover:shadow-blue-900 transition_all flex justify-center"
                 >
-                  <button>Edit profile</button>
+                  <button>Edit profile</button>{" "}
+                  {/* this should persist due to styling issue */}
                 </Link>
-
-                <button
-                  className="cursor-pointer px-2 p-1 mx-3 border border-red-500 text-red-500 rounded hover:bg-red-500 hover:text-amber-50 hover:shadow-2xl hover:shadow-red-900 transition_all flex justify-center"
+                <Button
+                  text="Delete Profile"
+                  color="red"
                   onClick={handleDelete}
-                >
-                  Delete profile
-                </button>
+                />
               </div>
             ) : null}
           </div>
@@ -116,20 +117,7 @@ function UserProfile(): JSX.Element {
             <p className="font-semibold cursor-pointer text-shadow-lg/10">
               Show contributions
             </p>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="size-3 shadow-lg/10 bg-amber50 cursor-pointer"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="m19.5 8.25-7.5 7.5-7.5-7.5"
-              />
-            </svg>
+            <ArrowDown />
           </div>
         </div>
       </div>

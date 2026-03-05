@@ -2,7 +2,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { api } from "../api/apiAxiosWrapper";
 import { AuthContextType } from "../types/contextTypes/contextTypes";
-import { destroyUser } from "../api/authenticationApi/authenticationApi";
+import { destroyUser } from "../api/authenticationApi/authentication";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
@@ -10,7 +10,7 @@ const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   useEffect(() => {
     const token = localStorage.getItem("authToken");
     if (token) setIsAuthenticated(true);
@@ -73,7 +73,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout, deleteAccount }}>
+    <AuthContext.Provider
+      value={{ isAuthenticated, login, logout, deleteAccount }}
+    >
       {children}
     </AuthContext.Provider>
   );

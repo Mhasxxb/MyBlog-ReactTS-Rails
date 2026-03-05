@@ -9,6 +9,7 @@ export interface PaginationContextType {
   setTotalCount: (count: number) => void;
   resetOffset: () => void
 }
+
 export interface AuthContextType {
   isAuthenticated: boolean;
   login: (token: string, userId: string) => void;

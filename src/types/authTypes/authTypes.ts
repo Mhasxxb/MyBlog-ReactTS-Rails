@@ -11,6 +11,7 @@ export type AuthApiResponse = {
   },
   token?: string
 }
+
 export type User = {
   first_name?: string,
   last_name?: string | null,

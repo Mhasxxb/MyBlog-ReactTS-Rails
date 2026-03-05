@@ -2,10 +2,11 @@ import { api } from "../apiAxiosWrapper"
 import { API_URL } from "../../config"
 import { ApiArticleResponse, ApiArticle } from "../../types/articlesType/articlesType"
 
-export const newArticleApi = async (
+export const updateArticleApi = async (
     path: string,
+    id: string,
     article: ApiArticle
-): Promise<any> => {
+): Promise<ApiArticleResponse> => {
     const token = localStorage.getItem("authToken");
     if (!token) {
         // Handle missing token, e.g., by returning an error or redirecting.
@@ -13,8 +14,8 @@ export const newArticleApi = async (
     }
 
     try {
-        const response = await api.post(
-            `${API_URL}${path}/articles/`,
+        const response = await api.patch(
+            `${API_URL}${path}/articles/${id}`,
             { article: article },
             {
                 headers: {
@@ -23,7 +24,6 @@ export const newArticleApi = async (
                 }
             })
         const result: ApiArticleResponse = {
-            id: response.data.article.id,
             message: response.data.message,
             status: response.status,
             success: true

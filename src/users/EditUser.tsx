@@ -2,30 +2,20 @@ import { ChangeEvent, useEffect, useState, type JSX } from "react";
 import Form from "../helpers/FormHelper";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { updateUserApi } from "../api/usersApi/editUserApi";
+import { updateUserApi } from "../api/usersApi/editUser";
 
 function EditingLayout(): JSX.Element {
   // HANDLE THIS USING CONTEXT API
-  let [fName, setFName] = useState<string>(
+  const [fName, setFName] = useState<string>(
     localStorage.getItem("first_name") || "",
   );
-  let [lName, setLName] = useState<string>(
+  const [lName, setLName] = useState<string>(
     localStorage.getItem("last_name") || "",
   );
   const { id } = useParams<{ id: string }>();
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    console.log(id, localStorage.getItem("id"));
-    if (localStorage.getItem("id") === null) {
-      console.log(1);
-      navigate(`/users/${localStorage.getItem("id")}`);
-    } else if (id !== localStorage.getItem("id")) {
-      console.log(2);
-      navigate(`/users/${localStorage.getItem("id")}`);
-    }
-  }, []);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (confirm("Are you sure you want to make these changes?")) {
@@ -55,6 +45,17 @@ function EditingLayout(): JSX.Element {
     first_name: fName,
     last_name: lName,
   };
+
+  useEffect(() => {
+    console.log(id, localStorage.getItem("id"));
+    if (localStorage.getItem("id") === null) {
+      console.log(1);
+      navigate(`/users/${localStorage.getItem("id")}`);
+    } else if (id !== localStorage.getItem("id")) {
+      console.log(2);
+      navigate(`/users/${localStorage.getItem("id")}`);
+    }
+  }, []);
 
   return (
     <>

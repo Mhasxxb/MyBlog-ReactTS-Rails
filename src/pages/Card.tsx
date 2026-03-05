@@ -1,4 +1,5 @@
 import type { JSX } from "react";
+
 type CardProp = {
   title: string;
   body: string;

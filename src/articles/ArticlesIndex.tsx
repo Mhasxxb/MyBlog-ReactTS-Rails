@@ -1,48 +1,46 @@
 import { useEffect, useState, type JSX } from "react";
 import ArticleCard from "./ArticleCard";
-import { articleIndexApi } from "../api/articlesApi/indexArticleApi";
+import { articleIndexApi } from "../api/articlesApi/indexArticle";
 import { usePagination } from "../context/PaginationContext";
 import PaginationControls from "../helpers/PaginationHelper";
 import { Article } from "../types/articlesType/articlesType";
+import { toast } from "react-toastify";
 
 function ArticleIndex(): JSX.Element {
   const { limit, offset, setTotalCount, resetOffset } = usePagination();
+  const [articles, setArticles] = useState<Article[] | undefined>([]);
   const [check, setCheck] = useState<boolean>(false);
-  useEffect(() => {
-    resetOffset();
-    setCheck(!check);
-  }, []);
 
-  const [articles, setArticles] = useState<Article[]>([]);
   async function getArticlesInfo(offset: number) {
     const articlesInfo = await articleIndexApi(`api/v1/articles/`, offset);
-
-    console.log(`api/v1/users/?limit=${limit}&offset=${offset}`);
     return articlesInfo;
   }
 
   useEffect(() => {
     const fetchArticles = async () => {
-      console.log(offset);
       const result = await getArticlesInfo(offset); // wait for resolved data
-      console.log(result);
       if (result.success) {
-        console.log(result);
         setArticles(result.response.articles);
-        setTotalCount(result.response.meta.count as number);
+        setTotalCount(result.response.meta?.count as number);
       }
       // handle error message
       else {
+        toast.error("Something went wrong")
       }
     };
 
     fetchArticles();
   }, [limit, offset, check]);
 
+  useEffect(() => {
+    resetOffset();
+    setCheck(!check);
+  }, []);
+
   return (
     <>
       <div className="my-10">
-        {articles.length > 0 ? (
+        {articles !== undefined ? (
           <>
             <PaginationControls />
             {articles.map((article) => {
@@ -59,7 +57,7 @@ function ArticleIndex(): JSX.Element {
             <PaginationControls />
           </>
         ) : (
-          <p>nothing to show</p>
+          <p>Nothing to show</p>
         )}
       </div>
     </>

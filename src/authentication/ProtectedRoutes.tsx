@@ -13,13 +13,11 @@ function ProtectedRoute(): ReactElement {
     }
   }, [location.pathname, isAuthenticated]);
   
-  if (isAuthenticated) {
-    return <Outlet />;
-  } else {
-    if (localStorage.getItem("id") == null) {
-      toast.warn("You need to sign up before performing this action!");
-    }
+  if (!isAuthenticated && !localStorage.getItem("id") == null) {
+    toast.warn("You need to sign up before performing this action!");
     return <Navigate to="/" replace />;
+  } else {
+    return <Outlet />; 
   }
 }
 
