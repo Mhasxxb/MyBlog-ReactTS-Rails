@@ -17,6 +17,7 @@
     "@tailwindplus/elements": "^1.0.22",
     "axios": "^1.13.5",
     "install": "^0.13.0",
+    "node": "^22.22.1",
     "npm": "^11.8.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",

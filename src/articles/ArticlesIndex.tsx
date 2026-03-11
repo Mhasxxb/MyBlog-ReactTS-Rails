@@ -9,7 +9,9 @@ import { toast } from "react-toastify";
 function ArticleIndex(): JSX.Element {
   const { limit, offset, setTotalCount, resetOffset } = usePagination();
   const [articles, setArticles] = useState<Article[] | undefined>([]);
-  const [check, setCheck] = useState<boolean>(false);
+  const [ready, setReady] = useState(false);
+
+  // const [check, setCheck] = useState<boolean>(false);
 
   async function getArticlesInfo(offset: number) {
     const articlesInfo = await articleIndexApi(`api/v1/articles/`, offset);
@@ -17,25 +19,25 @@ function ArticleIndex(): JSX.Element {
   }
 
   useEffect(() => {
+    resetOffset();
+    setReady(true);
+  }, []);
+  
+  useEffect(() => {
+    if (!ready) return;
+
     const fetchArticles = async () => {
-      const result = await getArticlesInfo(offset); // wait for resolved data
+      const result = await getArticlesInfo(offset);
       if (result.success) {
         setArticles(result.response.articles);
         setTotalCount(result.response.meta?.count as number);
-      }
-      // handle error message
-      else {
-        toast.error("Something went wrong")
+      } else {
+        toast.error("Something went wrong");
       }
     };
 
     fetchArticles();
-  }, [limit, offset, check]);
-
-  useEffect(() => {
-    resetOffset();
-    setCheck(!check);
-  }, []);
+  }, [limit, offset, ready]);
 
   return (
     <>

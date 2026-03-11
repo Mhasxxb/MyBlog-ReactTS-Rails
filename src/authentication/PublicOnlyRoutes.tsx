@@ -11,7 +11,7 @@ const PublicOnlyRoute = () => {
     return (
       <Navigate
         to={last ?? (userId ? `/users/${userId}` : "/users")}
-        state={{ message: "You are already logged in!" }}
+        state={last ? { message: "You are already logged in!" } : null}
         replace
       />
     );

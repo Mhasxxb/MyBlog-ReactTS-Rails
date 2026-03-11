@@ -11,7 +11,7 @@ function UserIndex(): JSX.Element {
   // const response
   const { limit, offset, setTotalCount, resetOffset } = usePagination();
   const [users, setUsers] = useState<Data[] | null | undefined>([]);
-  const [check, setCheck] = useState<boolean>(false);
+  const [ready, setReady] = useState<boolean>(false);
 
   async function getUsersInfo(offset: number) {
     const usersInfo: UserIndexResponse = await userIndexApi(
@@ -24,11 +24,13 @@ function UserIndex(): JSX.Element {
   }
 
   useEffect(() => {
-      resetOffset();
-      setCheck(!check);
-    }, []);
-
+    resetOffset();
+    setReady(true);
+  }, []);
+  
   useEffect(() => {
+    if (!ready) return;
+    
     const fetchUsers = async () => {
       const result: UserIndexResponse = await getUsersInfo(offset); // wait for resolved data
       if (result.success) {
@@ -41,7 +43,7 @@ function UserIndex(): JSX.Element {
     };
 
     fetchUsers();
-  }, [limit, offset, check]);
+  }, [limit, offset, ready]);
 
   return (
     <>
